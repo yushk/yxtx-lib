@@ -2,18 +2,22 @@
   "name": "yxtx",
   "version": "1.0.0",
   "description": "vue2 components",
+  "author": "yushk <945009587@qq.com>",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.js ",
     "build:demo": "webpack --config build/webpack.demo.js",
     "build": "webpack --config build/webpack.config.js"
   },
+  "keywords": [
+    "vue",
+    "components lib"
+  ],
   "repository": {
     "type": "git",
     "url": "https://gitee.com/yushk/yxtx.git"
   },
-  "author": "yushk",
-  "license": "ISC",
   "devDependencies": {
     "@webpack-cli/generators": "^2.4.2",
     "html-webpack-plugin": "^5.5.0",
