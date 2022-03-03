@@ -180,13 +180,13 @@
   </div>
 </template>
 <script>
-import LeftToolBar from './components/LeftToolBar.vue'
-import RightToolBar from './components/RightToolBar.vue'
-import SvgComponents from './components/SvgComponents.vue'
-import coms from '@/InterfaceReturn.json'
-import example from './components/example.json'
-import { mapGetters } from 'vuex'
-import { GenUUid } from '@/utils/UCore.js'
+import LeftToolBar from './components/LeftToolBar.vue';
+import RightToolBar from './components/RightToolBar.vue';
+import SvgComponents from './components/SvgComponents.vue';
+import coms from 'main/assets/json/InterfaceReturn.json';
+import example from 'main/assets/json/example.json';
+import { mapGetters } from 'vuex';
+import { GenUUid } from 'main/utils/UCore.js';
 export default {
   name: 'YxSvgEdit',
   components: { LeftToolBar, RightToolBar, SvgComponents },
@@ -236,7 +236,7 @@ export default {
         size: 1 // 缩放倍数
       },
       ctrlDown: false
-    }
+    };
   },
   computed: {
     ...mapGetters({
@@ -244,88 +244,88 @@ export default {
     })
   },
   created() {
-    const _this = this
+    const _this = this;
     // 当前页面监视键盘输入
     document.onkeydown = function(e) {
       // 事件对象兼容
-      const e1 = e || window.event || arguments.callee.caller.arguments[0]
+      const e1 = e || window.event || arguments.callee.caller.arguments[0];
       // ctrl  按下
       if (e1 && e1.ctrlKey) {
-        _this.ctrlDown = true
-        e.preventDefault()
-        return
+        _this.ctrlDown = true;
+        e.preventDefault();
+        return;
       }
       // 获取当前选中组件
-      const selectSvgInfo = _this.selectSvgInfo
+      const selectSvgInfo = _this.selectSvgInfo;
       if (Object.keys(selectSvgInfo).length === 0) {
-        return
+        return;
       }
       // 键盘按键判断:左箭头-37;上箭头-38；右箭头-39;下箭头-40
       if (e1 && e1.keyCode === 37) {
-        e.preventDefault()
-        selectSvgInfo.svgPositionX -= 1
+        e.preventDefault();
+        selectSvgInfo.svgPositionX -= 1;
       } else if (e1 && e1.keyCode === 38) {
-        e.preventDefault()
-        selectSvgInfo.svgPositionY -= 1
+        e.preventDefault();
+        selectSvgInfo.svgPositionY -= 1;
       } else if (e1 && e1.keyCode === 39) {
-        e.preventDefault()
-        selectSvgInfo.svgPositionX += 1
+        e.preventDefault();
+        selectSvgInfo.svgPositionX += 1;
       } else if (e1 && e1.keyCode === 40) {
-        e.preventDefault()
-        selectSvgInfo.svgPositionY += 1
+        e.preventDefault();
+        selectSvgInfo.svgPositionY += 1;
       } else if (e1 && e1.ctrlKey && e1.keyCode === 67) {
         // ctrl  c
-        e.preventDefault()
-        const copySvgInfoStr = JSON.stringify(selectSvgInfo)
-        const copySvgInfo = JSON.parse(copySvgInfoStr)
-        copySvgInfo.id = GenUUid()
-        copySvgInfo.svgPositionX = selectSvgInfo.svgPositionX + 10
-        copySvgInfo.svgPositionY = selectSvgInfo.svgPositionY + 10
-        _this.svgLists.push(copySvgInfo)
-        _this.selectSvgInfo = copySvgInfo
+        e.preventDefault();
+        const copySvgInfoStr = JSON.stringify(selectSvgInfo);
+        const copySvgInfo = JSON.parse(copySvgInfoStr);
+        copySvgInfo.id = GenUUid();
+        copySvgInfo.svgPositionX = selectSvgInfo.svgPositionX + 10;
+        copySvgInfo.svgPositionY = selectSvgInfo.svgPositionY + 10;
+        _this.svgLists.push(copySvgInfo);
+        _this.selectSvgInfo = copySvgInfo;
       } else if (e1 && e1.keyCode === 46) {
-        e.preventDefault()
+        e.preventDefault();
         // 根据当前id找到当前元素的index
         const selectSvgIndex = _this.svgLists.indexOf(
           _this.svgLists.filter((f) => f.id === selectSvgInfo.id)[0]
-        )
-        _this.svgLists.splice(selectSvgIndex, 1)
+        );
+        _this.svgLists.splice(selectSvgIndex, 1);
       }
-    }
+    };
     document.onkeyup = function(e) {
-      _this.ctrlDown = false
-    }
-    console.log('coms', coms)
+      _this.ctrlDown = false;
+    };
+    console.log('coms', coms);
     // 请求接口获取组件
-    this.svgInfoData = coms
+    this.svgInfoData = coms;
   },
   mounted() {
-    const _this = this
-    var doc = document.getElementById('main-container')
+    const _this = this;
+    var doc = document.getElementById('main-container');
     this.Bg = Object.assign(this.Bg, {
       height: doc.clientHeight,
       width: doc.clientWidth
-    })
+    });
     this.$nextTick(() => {
-      const canvasdiv = _this.$refs.canvas
+      const canvasdiv = _this.$refs.canvas;
       canvasdiv.addEventListener(
         'dragover',
         function(e) {
-          e.preventDefault()
+          e.preventDefault();
         },
         false
-      )
+      );
       canvasdiv.addEventListener(
         'drop',
         function(e) {
-          e.preventDefault()
+          e.preventDefault();
           if (
             _this.CurrentlySelectedToolBar.Type === '' ||
               _this.CurrentlySelectedToolBar.CreateType !== 'draggable'
           ) {
-            return
+            return;
           }
-          const eChartsOption = _this.CurrentlySelectedToolBar.EChartsOption
+          const eChartsOption = _this.CurrentlySelectedToolBar.EChartsOption;
           // 根据类型和鼠标位置创建组件
           const svgItem = {
             id: GenUUid(),
@@ -339,71 +339,71 @@ export default {
             size: 1,
             angle: 0
             // translate:`translate(${this.mousePosition.positionX},${this.mousePosition.positionY})`
-          }
-          console.log('svgItem', svgItem)
-          _this.svgLists.push(svgItem)
-          _this.selectSvgInfo = svgItem
+          };
+          console.log('svgItem', svgItem);
+          _this.svgLists.push(svgItem);
+          _this.selectSvgInfo = svgItem;
         },
         false
-      )
-    })
+      );
+    });
   },
   methods: {
     showAddSvgModal() {
-      this.addSvgVisible = true
+      this.addSvgVisible = true;
     },
     addSvgHandleOk() {
-      this.svgInfoData[this.svgInfoData.length] = this.testAddSvg
-      this.addSvgVisible = false
+      this.svgInfoData[this.svgInfoData.length] = this.testAddSvg;
+      this.addSvgVisible = false;
     },
     versionModelHandleOk() {
-      this.versionModelVisible = false
+      this.versionModelVisible = false;
     },
     exportSvg() {
-      let exportStr = document.querySelector('#svgCanvas').outerHTML
+      let exportStr = document.querySelector('#svgCanvas').outerHTML;
       exportStr = exportStr
         .replace('width="100%"', 'width="1920"')
-        .replace('height="100%"', 'height="1080"')
-      const datastr = 'data:text;charset=utf-8,' + encodeURIComponent(exportStr)
-      const download = document.createElement('a')
-      download.setAttribute('href', datastr)
-      download.setAttribute('download', 'download.html')
-      download.click()
-      download.remove()
-      console.log(exportStr)
+        .replace('height="100%"', 'height="1080"');
+      const datastr = 'data:text;charset=utf-8,' + encodeURIComponent(exportStr);
+      const download = document.createElement('a');
+      download.setAttribute('href', datastr);
+      download.setAttribute('download', 'download.html');
+      download.click();
+      download.remove();
+      console.log(exportStr);
     },
     exportData() {
-      localStorage.setItem('svginfo', JSON.stringify(this.svgLists))
+      localStorage.setItem('svginfo', JSON.stringify(this.svgLists));
       const datastr =
           'data:text/json;charset=utf-8,' +
-          encodeURIComponent(JSON.stringify(this.svgLists))
-      const download = document.createElement('a')
-      download.setAttribute('href', datastr)
-      download.setAttribute('download', 'download.json')
-      download.click()
-      download.remove()
-      console.log(JSON.stringify(this.svgLists))
+          encodeURIComponent(JSON.stringify(this.svgLists));
+      const download = document.createElement('a');
+      download.setAttribute('href', datastr);
+      download.setAttribute('download', 'download.json');
+      download.click();
+      download.remove();
+      console.log(JSON.stringify(this.svgLists));
     },
     MouseMove(e) {
-      const _this = this
+      const _this = this;
 
       if (this.clickType === 'draggable') {
         if (this.mouseStatus === 0) {
-          return
+          return;
         }
-        const { clientX, clientY } = e
+        const { clientX, clientY } = e;
         // console.log(e.offsetX,e.offsetY);
         // let svgID = this.svgLists[this.selectSvg.Index].id;
-        const svgID = this.selectSvg.ID
+        const svgID = this.selectSvg.ID;
         // 排除当前元素剩下的所有svg元素的列表
         const anyPositionList = this.svgLists.filter(function(list) {
-          return list.id !== svgID
-        })
+          return list.id !== svgID;
+        });
         // 将要移动的元素坐标设备为鼠标坐标
-        let svgPositionX = this.selectSvg.pointX
-        let svgPositionY = this.selectSvg.pointY
-        svgPositionX += (clientX - this.selectSvg.mPositionX) / this.Bg.size
-        svgPositionY += (clientY - this.selectSvg.mPositionY) / this.Bg.size
+        let svgPositionX = this.selectSvg.pointX;
+        let svgPositionY = this.selectSvg.pointY;
+        svgPositionX += (clientX - this.selectSvg.mPositionX) / this.Bg.size;
+        svgPositionY += (clientY - this.selectSvg.mPositionY) / this.Bg.size;
         setTimeout(function() {
           // 少于十个像素自动吸附
           // 从所有的x坐标列表中查与当前坐标少于10个像素的组件是否存在
@@ -411,69 +411,69 @@ export default {
             return (
               list.svgPositionX - svgPositionX > -10 &&
                 list.svgPositionX - svgPositionX < 10
-            )
-          })
+            );
+          });
           if (exitsAdsorbX.length > 0) {
-            svgPositionX = exitsAdsorbX[0].svgPositionX
+            svgPositionX = exitsAdsorbX[0].svgPositionX;
           }
           // y轴相同 横向坐标自动吸附
           const exitsAdsorbY = anyPositionList.filter(function(list) {
             return (
               list.svgPositionY - svgPositionY > -10 &&
                 list.svgPositionY - svgPositionY < 10
-            )
-          })
+            );
+          });
           if (exitsAdsorbY.length > 0) {
-            svgPositionY = exitsAdsorbY[0].svgPositionY
+            svgPositionY = exitsAdsorbY[0].svgPositionY;
           }
-          _this.svgLists[_this.selectSvg.Index].svgPositionX = svgPositionX
-          _this.svgLists[_this.selectSvg.Index].svgPositionY = svgPositionY
+          _this.svgLists[_this.selectSvg.Index].svgPositionX = svgPositionX;
+          _this.svgLists[_this.selectSvg.Index].svgPositionY = svgPositionY;
           // 从所有的x坐标列表中查当前坐标是否存在
           const exitsNowX = anyPositionList.filter(function(list) {
-            return list.svgPositionX === svgPositionX
-          })
+            return list.svgPositionX === svgPositionX;
+          });
           if (exitsNowX.length > 0) {
             _this.$refs.guidey_dom.style.setProperty(
               'left',
               svgPositionX - 1 / _this.Bg.size + 'px'
-            )
-            _this.$refs.guidey_dom.style.display = 'inline'
+            );
+            _this.$refs.guidey_dom.style.display = 'inline';
           } else {
-            _this.$refs.guidey_dom.style.display = 'none'
+            _this.$refs.guidey_dom.style.display = 'none';
           }
           // 从所有的y坐标列表中查当前坐标是否存在
           const exitsNowY = anyPositionList.filter(function(list) {
-            return list.svgPositionY === svgPositionY
-          })
+            return list.svgPositionY === svgPositionY;
+          });
           if (exitsNowY.length > 0) {
             _this.$refs.guidex_dom.style.setProperty(
               'top',
               svgPositionY - 1 / _this.Bg.size + 'px'
-            )
-            _this.$refs.guidex_dom.style.display = 'inline'
+            );
+            _this.$refs.guidex_dom.style.display = 'inline';
           } else {
-            _this.$refs.guidex_dom.style.display = 'none'
+            _this.$refs.guidex_dom.style.display = 'none';
           }
-        }, 1)
+        }, 1);
       } else if (this.clickType === 'click') {
         if (this.mouseStatus === 0) {
-          return
+          return;
         }
-        this.selectSvgInfo.mPoint.endX = e.offsetX
-        this.selectSvgInfo.mPoint.endY = e.offsetY
+        this.selectSvgInfo.mPoint.endX = e.offsetX;
+        this.selectSvgInfo.mPoint.endY = e.offsetY;
       }
     },
     MousedownCanvas(e) {
-      console.log('MousedownCanvas')
+      console.log('MousedownCanvas');
       if (this.clickType === 'draggable') {
-        return
+        return;
       }
       if (
         this.CurrentlySelectedToolBar &&
           this.CurrentlySelectedToolBar.CreateType === 'click'
       ) {
         // 根据类型和鼠标位置创建组件
-        const svg_id = GenUUid()
+        const svg_id = GenUUid();
         const svgItem = {
           id: svg_id,
           title: this.CurrentlySelectedToolBar.Title,
@@ -491,43 +491,43 @@ export default {
           size: 1,
           angle: 0
           // translate:`translate(${this.mousePosition.positionX},${this.mousePosition.positionY})`
-        }
-        this.svgLists.push(svgItem)
-        this.selectSvgInfo = svgItem
-        this.mouseStatus = 1
-        this.clickType = 'click'
+        };
+        this.svgLists.push(svgItem);
+        this.selectSvgInfo = svgItem;
+        this.mouseStatus = 1;
+        this.clickType = 'click';
       }
     },
     MousedownSvg(id, index, pointX, pointY, e) {
-      console.log('MousedownSvg')
-      this.$store.dispatch('svg/clear')
+      console.log('MousedownSvg');
+      this.$store.dispatch('svg/clear');
       // 从数组里面根据index找到当前元素
-      this.mouseStatus = 1
-      this.selectSvg.ID = id
-      this.selectSvg.Index = index
-      this.selectSvg.mPositionX = e.clientX
-      this.selectSvg.mPositionY = e.clientY
-      this.selectSvg.pointX = pointX
-      this.selectSvg.pointY = pointY
-      this.selectSvgInfo = this.svgLists[index]
-      this.clickType = 'draggable'
-      e.stopPropagation()
+      this.mouseStatus = 1;
+      this.selectSvg.ID = id;
+      this.selectSvg.Index = index;
+      this.selectSvg.mPositionX = e.clientX;
+      this.selectSvg.mPositionY = e.clientY;
+      this.selectSvg.pointX = pointX;
+      this.selectSvg.pointY = pointY;
+      this.selectSvgInfo = this.svgLists[index];
+      this.clickType = 'draggable';
+      e.stopPropagation();
     },
     MouseupCanvas() {
-      console.log('mouseup canvas')
+      console.log('mouseup canvas');
       if (this.mouseStatus === 0) {
-        return
+        return;
       }
-      this.$refs.guidex_dom.style.display = 'none'
-      this.$refs.guidey_dom.style.display = 'none'
+      this.$refs.guidex_dom.style.display = 'none';
+      this.$refs.guidey_dom.style.display = 'none';
       // if (this.$store.state.CurrentlySelectedToolBar.Type != '') {
       //   return;
       // }
       // this.selectSvg.ID = '';
-      this.mouseStatus = 0
+      this.mouseStatus = 0;
       // this.clickType = '';
       if (this.clickType === 'draggable') {
-        this.clickType = ''
+        this.clickType = '';
       }
       if (this.clickType === 'click') {
         if (
@@ -538,10 +538,10 @@ export default {
           // 根据当前id找到当前元素的index
           const selectSvgIndex = this.svgLists.indexOf(
             this.svgLists.filter((f) => f.id === this.selectSvgInfo.id)[0]
-          )
-          this.svgLists.splice(selectSvgIndex, 1)
-          this.selectSvg = {}
-          this.selectSvgInfo = {}
+          );
+          this.svgLists.splice(selectSvgIndex, 1);
+          this.selectSvg = {};
+          this.selectSvgInfo = {};
         }
       }
       // this.$store.state.CurrentlySelectedToolBar = {};
@@ -549,42 +549,42 @@ export default {
     MouseWheel(e) {
       // ctrl + mheel  页面缩放
       if (this.ctrlDown) {
-        e.preventDefault()
-        const svgZoom = e.deltaY < 0 ? 0.1 : -0.1
-        this.Bg.size += svgZoom
-        this.Bg.size = parseFloat(this.Bg.size.toFixed(1))
+        e.preventDefault();
+        const svgZoom = e.deltaY < 0 ? 0.1 : -0.1;
+        this.Bg.size += svgZoom;
+        this.Bg.size = parseFloat(this.Bg.size.toFixed(1));
         if (this.Bg.size < 0) {
-          this.Bg.size = 0
+          this.Bg.size = 0;
         }
-        return
+        return;
       }
 
       // 获取当前选中组件
-      const selectSvgInfo = this.selectSvgInfo
+      const selectSvgInfo = this.selectSvgInfo;
       if (Object.keys(selectSvgInfo).length === 0) {
-        return
+        return;
       }
-      e.preventDefault()
+      e.preventDefault();
       // 判断滚轮方向 -100是往上滑 100是下滑
-      const svgZoom = e.deltaY < 0 ? 0.1 : -0.1
-      selectSvgInfo.size += svgZoom
-      selectSvgInfo.size = parseFloat(selectSvgInfo.size.toFixed(1))
+      const svgZoom = e.deltaY < 0 ? 0.1 : -0.1;
+      selectSvgInfo.size += svgZoom;
+      selectSvgInfo.size = parseFloat(selectSvgInfo.size.toFixed(1));
       if (selectSvgInfo.size < 1) {
-        selectSvgInfo.size = 1
+        selectSvgInfo.size = 1;
       }
     },
     DblClick() {
-      this.selectSvgInfo = {}
-      this.$store.dispatch('svg/clear')
+      this.selectSvgInfo = {};
+      this.$store.dispatch('svg/clear');
     },
     mouseDownBg() {
-      console.log('mouseDownBg')
-      this.selectSvgInfo = this.Bg
+      console.log('mouseDownBg');
+      this.selectSvgInfo = this.Bg;
     },
     testA() {
       // 载入模板
-      this.Bg = example.bg
-      this.svgLists = example.items
+      this.Bg = example.bg;
+      this.svgLists = example.items;
       // this.$axios
       //   .get('/example.json')
       //   .then(function (response) {
@@ -598,27 +598,27 @@ export default {
       localStorage.setItem(
         'svginfo',
         JSON.stringify({ bg: this.Bg, items: this.svgLists })
-      )
+      );
       this.$router.push({
         path: '/personnelManagement/svg'
-      })
+      });
     },
     // 设置表格属性
     setTableAttr(id, rowCount, colCount) {
       // 根据当前id找到当前表格的index
       const tableIndex = this.svgLists.indexOf(
         this.svgLists.filter((f) => f.id === id)[0]
-      )
+      );
       if (tableIndex === -1) {
-        return
+        return;
       }
-      const svgType = this.svgLists.filter((f) => f.id === id)[0].type
+      const svgType = this.svgLists.filter((f) => f.id === id)[0].type;
       if (svgType !== 'TableSvg') {
-        return
+        return;
       }
-      const tableData = []
+      const tableData = [];
       for (let r = 0; r < rowCount; r++) {
-        const tableColDataList = []
+        const tableColDataList = [];
         for (let c = 0; c < colCount; c++) {
           if (
             this.svgLists[tableIndex].tableData.length >= r + 1 &&
@@ -626,31 +626,31 @@ export default {
           ) {
             tableColDataList.push(
               this.svgLists[tableIndex].tableData[r].cols[c]
-            )
+            );
           } else {
             const tableColData = {
               id: GenUUid(),
               val: `${r + 1}行${c + 1}列`
-            }
-            tableColDataList.push(tableColData)
+            };
+            tableColDataList.push(tableColData);
           }
         }
         const tableRowData = {
           cols: tableColDataList
-        }
-        tableData.push(tableRowData)
+        };
+        tableData.push(tableRowData);
       }
-      this.svgLists[tableIndex].tableData = tableData
+      this.svgLists[tableIndex].tableData = tableData;
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   #components-layout {
     width: 100%;
-    height: calc(100vh - #{$base-top-bar-height});
+    height:100%;
     .pageMain {
       position: relative;
       display: flex;

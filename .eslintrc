@@ -5,6 +5,8 @@
   },
   "plugins": ["html", "json"],
   "extends": "elemefe",
+  // "parser": "babel-eslint",
+  "parser": "vue-eslint-parser",
   "rules": {
     "no-restricted-globals": ["error", "event", "fdescribe"]
   },
@@ -12,6 +14,7 @@
     "ecmaVersion": 6,
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "sourceType": "module"
   }
 }

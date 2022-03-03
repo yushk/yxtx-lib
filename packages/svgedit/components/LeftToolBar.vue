@@ -92,25 +92,25 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 export default {
-  name: 'YxLeftToolBar',
+  name: 'LeftToolBar',
   props: {
     svgInfoData: {
       type: Array,
       default: function() {
-        return []
+        return [];
       }
     }
   },
   data() {
     return {
       activeKey: ['1'], // 当前激活的key
-      text: `这里是预留位置.`,
+      text: '这里是预留位置.',
       draggableComponentList: [], // 拖动组件
       drawComponentList: [], // 绘制类型组件
       chartComponentList: [] // 图表类型
-    }
+    };
   },
   computed: {
     ...mapGetters({
@@ -123,14 +123,14 @@ export default {
       immediate: true,
       handler(val) {
         this.draggableComponentList = val.filter((m) => {
-          return m.panel_class == 'draggable'
-        })
+          return m.panel_class == 'draggable';
+        });
         this.drawComponentList = val.filter((m) => {
-          return m.panel_class == 'draw'
-        })
+          return m.panel_class == 'draw';
+        });
         this.chartComponentList = val.filter((m) => {
-          return m.panel_class == 'chart'
-        })
+          return m.panel_class == 'chart';
+        });
       }
     }
   },
@@ -152,11 +152,11 @@ export default {
         Color: default_attr.color, // 选中的工具栏svg颜色
         CreateType: create_type, // 选中工具栏的创建方式
         EChartsOption: default_attr.echarts_option
-      }
-      this.$store.dispatch('svg/set', CurrentlySelectedToolBar)
+      };
+      this.$store.dispatch('svg/set', CurrentlySelectedToolBar);
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
   .components-layout-left .ant-input-search-icon {

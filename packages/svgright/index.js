@@ -1,8 +1,8 @@
-import RightToolBar from '../svgedit/components/RightToolBar.vue'
+import RightToolBar from '../svgedit/components/RightToolBar.vue';
 
 /* istanbul ignore next */
 RightToolBar.install = function(Vue) {
-  Vue.component(RightToolBar.name, RightToolBar)
-}
+  Vue.component(RightToolBar.name, RightToolBar);
+};
 
-export default RightToolBar
+export default RightToolBar;

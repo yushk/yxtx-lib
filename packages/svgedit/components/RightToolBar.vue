@@ -106,18 +106,18 @@
 </template>
 <script>
 export default {
-  name: 'YxRightToolBar',
+  name: 'RightToolBar',
   props: {
     svgInfo: {
       type: Object,
       default: function() {
-        return {}
+        return {};
       }
     }
   },
   computed: {
     selectSvgInfo() {
-      return this.svgInfo
+      return this.svgInfo;
     }
   },
   watch: {
@@ -127,7 +127,7 @@ export default {
         this.selectSvgInfo.id,
         newVal,
         this.selectSvgInfo.tableColCount
-      )
+      );
     },
     'selectSvgInfo.tableColCount': function(newVal) {
       this.$emit(
@@ -135,13 +135,13 @@ export default {
         this.selectSvgInfo.id,
         this.selectSvgInfo.tableRowCount,
         newVal
-      )
+      );
     }
   },
   mounted() {
-    console.log('right panel this.selectSvgInfo', this.selectSvgInfo)
+    console.log('right panel this.selectSvgInfo', this.selectSvgInfo);
   }
-}
+};
 </script>
 <style scoped lang="scss">
   .rightNav {
