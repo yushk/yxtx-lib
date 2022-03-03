@@ -1,0 +1,243 @@
+<template>
+  <div class="components-layout-left leftNav">
+    <!-- <a-input-search placeholder="搜索组件" /> -->
+    <el-collapse
+      v-model="activeKey"
+      accordion
+    >
+      <el-collapse-item
+        key="1"
+        title="拖动组件"
+      >
+        <ul class="svg-nav-list">
+          <li
+            v-for="item in draggableComponentList"
+            :key="item.type"
+          >
+            <div class="title">{{ item.title }}</div>
+            <img
+              :title="item.title"
+              :src="item.priview_img"
+              draggable="draggable"
+              @mousedown="
+                Mousedown(
+                  item.type,
+                  item.title,
+                  item.default_attr,
+                  item.create_type
+                )
+              "
+            >
+          </li>
+        </ul>
+      </el-collapse-item>
+      <el-collapse-item
+        key="2"
+        title="绘制组件"
+        :disabled="false"
+      >
+        <ul class="svg-nav-list">
+          <li
+            v-for="item in drawComponentList"
+            :key="item.type"
+            :class="
+              CurrentlySelectedToolBar.Type == item.type
+                ? 'toolbar-selected'
+                : ''
+            "
+          >
+            <div class="title">{{ item.title }}</div>
+            <img
+              :title="item.title"
+              :src="item.priview_img"
+              @mousedown="
+                Mousedown(
+                  item.type,
+                  item.title,
+                  item.default_attr,
+                  item.create_type
+                )
+              "
+            >
+          </li>
+        </ul>
+      </el-collapse-item>
+      <el-collapse-item
+        key="3"
+        title="图表"
+      >
+        <ul class="svg-nav-list">
+          <li
+            v-for="item in chartComponentList"
+            :key="item.type"
+          >
+            <div class="title">{{ item.title }}</div>
+            <img
+              :title="item.title"
+              :src="item.priview_img"
+              draggable="draggable"
+              @mousedown="
+                Mousedown(
+                  item.type,
+                  item.title,
+                  item.default_attr,
+                  item.create_type
+                )
+              "
+            >
+          </li>
+        </ul>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
+</template>
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  name: 'YxLeftToolBar',
+  props: {
+    svgInfoData: {
+      type: Array,
+      default: function() {
+        return []
+      }
+    }
+  },
+  data() {
+    return {
+      activeKey: ['1'], // 当前激活的key
+      text: `这里是预留位置.`,
+      draggableComponentList: [], // 拖动组件
+      drawComponentList: [], // 绘制类型组件
+      chartComponentList: [] // 图表类型
+    }
+  },
+  computed: {
+    ...mapGetters({
+      CurrentlySelectedToolBar: 'svg/CurrentlySelectedToolBar'
+    })
+  },
+  watch: {
+    svgInfoData: {
+      deep: true,
+      immediate: true,
+      handler(val) {
+        this.draggableComponentList = val.filter((m) => {
+          return m.panel_class == 'draggable'
+        })
+        this.drawComponentList = val.filter((m) => {
+          return m.panel_class == 'draw'
+        })
+        this.chartComponentList = val.filter((m) => {
+          return m.panel_class == 'chart'
+        })
+      }
+    }
+  },
+  mounted() {},
+  methods: {
+    /**
+       * @description: 点击左侧工具栏触发函数
+       * @param {*} type
+       * @param {*} title
+       * @param {*} default_attr 属性默认值
+       * @param {*} create_type 组件创建方式
+       * @return {*}
+       */
+    Mousedown(type, title, default_attr, create_type) {
+      const CurrentlySelectedToolBar = {
+        Type: type, // 选中的工具栏svg类型
+        TypeName: title, // 选中的工具栏svg类型名称
+        Title: title, // 选中的工具栏svg标题
+        Color: default_attr.color, // 选中的工具栏svg颜色
+        CreateType: create_type, // 选中工具栏的创建方式
+        EChartsOption: default_attr.echarts_option
+      }
+      this.$store.dispatch('svg/set', CurrentlySelectedToolBar)
+    }
+  }
+}
+</script>
+<style lang="scss" scoped>
+  .components-layout-left .ant-input-search-icon {
+    font-size: 20px !important;
+    color: #1890ff !important;
+  }
+  .components-layout-left .ant-collapse,
+  .components-layout-left .ant-collapse-content,
+  .components-layout-left .ant-collapse > .ant-collapse-item {
+    border-color: #eee !important;
+  }
+  .components-layout-left .ant-collapse-content > .ant-collapse-content-box {
+    padding: 16px 0;
+  }
+  .ant-input-affix-wrapper {
+    height: 45px;
+    line-height: 45px;
+    border: none;
+  }
+  .svg-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      position: relative;
+      width: calc(33.33% - 30px);
+      margin: 0 15px 15px 15px;
+      padding: 0;
+      border-radius: 50%;
+      box-shadow: 1px 1px 5px #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 1px 1px 10px #ccc;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      .title {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        height: 20px;
+        line-height: 20px;
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+
+    &.two-item {
+      li {
+        width: calc(50% - 30px);
+        height: 100px;
+        margin-bottom: 25px;
+        border-radius: 10px;
+
+        img {
+          width: auto;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .toolbar-selected {
+    outline: 1px solid #0cf;
+  }
+  .leftNav {
+    width: 100%;
+    overflow: auto;
+  }
+</style>
