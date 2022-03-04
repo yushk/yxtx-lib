@@ -92,14 +92,26 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
 export default {
-  name: 'LeftToolBar',
+  name: 'LeftTool',
   props: {
     svgInfoData: {
       type: Array,
       default: function() {
         return [];
+      }
+    },
+    CurrentlySelectedToolBar: {
+      type: Object,
+      default: function() {
+        return {
+          Type: '', // 选中的工具栏svg类型
+          TypeName: '', // 选中的工具栏svg类型名称
+          Title: '', // 选中的工具栏svg标题
+          Color: '', // 选中的工具栏svg颜色
+          CreateType: '', // 选中工具栏的创建方式
+          EChartsOption: '' // 选中工具栏的图表默认option
+        };
       }
     }
   },
@@ -113,9 +125,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      CurrentlySelectedToolBar: 'svg/CurrentlySelectedToolBar'
-    })
+
   },
   watch: {
     svgInfoData: {
@@ -123,13 +133,13 @@ export default {
       immediate: true,
       handler(val) {
         this.draggableComponentList = val.filter((m) => {
-          return m.panel_class == 'draggable';
+          return m.panel_class === 'draggable';
         });
         this.drawComponentList = val.filter((m) => {
-          return m.panel_class == 'draw';
+          return m.panel_class === 'draw';
         });
         this.chartComponentList = val.filter((m) => {
-          return m.panel_class == 'chart';
+          return m.panel_class === 'chart';
         });
       }
     }
@@ -153,7 +163,7 @@ export default {
         CreateType: create_type, // 选中工具栏的创建方式
         EChartsOption: default_attr.echarts_option
       };
-      this.$store.dispatch('svg/set', CurrentlySelectedToolBar);
+      this.$emit('setCurrent', CurrentlySelectedToolBar);
     }
   }
 };

@@ -22,6 +22,7 @@ var webpackConfig = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
+      vue$: 'vue/dist/vue.esm.js',
       main: path.resolve(__dirname, '../src'),
       packages: path.resolve(__dirname, '../packages'),
       examples: path.resolve(__dirname, '../examples'),
@@ -78,6 +79,10 @@ var webpackConfig = {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
         loader: 'file-loader'
       }
+      // {
+      //   test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
+      //   loader: 'url-loader'
+      // }
     ]
   },
   plugins: [
@@ -91,7 +96,7 @@ var webpackConfig = {
   output: {
     clean: true,
     publicPath: '/',
-    path: path.resolve(process.cwd(), './examples/yxtx-lib/'),
+    path: path.resolve(process.cwd(), './dist/'),
     filename: '[name].[hash:7].js',
     chunkFilename: '[name].[hash:7].js'
   }

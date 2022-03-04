@@ -25,7 +25,7 @@ use([
   BarChart
 ]);
 export default {
-  name: 'SvgComponents',
+  name: 'SvgItem',
   components: {},
   provide: {
     [THEME_KEY]: 'dark'

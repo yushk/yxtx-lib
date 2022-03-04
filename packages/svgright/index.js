@@ -1,4 +1,4 @@
-import RightToolBar from '../svgedit/components/RightToolBar.vue';
+import RightToolBar from '../svgedit/components/RightTool.vue';
 
 /* istanbul ignore next */
 RightToolBar.install = function(Vue) {

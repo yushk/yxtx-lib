@@ -9,22 +9,39 @@ Vue.use(Yxtx);
 Vue.use(VueRouter);
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import './demo-styles/index.scss';
+import './assets/styles/common.css';
+import './assets/styles/fonts/style.css';
+import icon from './icon.json';
 
 Vue.use(ElementUI);
+Vue.prototype.$icon = icon; // Icon 列表页用
 
 // import ECharts from 'vue-echarts';
 // Vue.component('VChart', ECharts);
-// import demoBlock from './components/demo-block';
+import demoBlock from './components/demo-block';
 // import MainFooter from './components/footer';
 import MainHeader from './components/header';
-// import SideNav from './components/side-nav';
+import SideNav from './components/side-nav';
 // import FooterNav from './components/footer-nav';
 
-// Vue.component('demo-block', demoBlock);
+Vue.component('demo-block', demoBlock);
 // Vue.component('main-footer', MainFooter);
 Vue.component('main-header', MainHeader);
-// Vue.component('side-nav', SideNav);
+Vue.component('side-nav', SideNav);
 // Vue.component('footer-nav', FooterNav);
+
+// import Fragment from 'vue-fragment';
+// Vue.use(Fragment.Plugin);
+
+// import coms from 'main/assets/json/InterfaceReturn.json';
+// coms.forEach((e) => {
+//   let com1 = Vue.extend({
+//     props: e.props,
+//     template: `<fragment>${e.template}</fragment>`
+//   });
+//   Vue.component(e.type, com1);
+// });
 
 const router = new VueRouter({
   mode: 'hash',

@@ -14,10 +14,20 @@ const components = [
   RightToolBar
 ];
 
-const install = function(Vue, opts = {}) {
+import Fragment from 'vue-fragment';
+import baseComponents from 'main/assets/json/InterfaceReturn.json';
 
+const install = function(Vue, opts = {}) {
   components.forEach(component => {
-    Vue.component(component.name, component);
+    Vue.component('yx' + component.name, component);
+  });
+  Vue.use(Fragment.Plugin);
+  baseComponents.forEach((e) => {
+    let com1 = Vue.extend({
+      props: e.props,
+      template: `<fragment>${e.template}</fragment>`
+    });
+    Vue.component(e.type, com1);
   });
 };
 

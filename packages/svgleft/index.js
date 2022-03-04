@@ -1,4 +1,4 @@
-import LeftToolBar from '../svgedit/components/LeftToolBar.vue';
+import LeftToolBar from '../svgedit/components/LeftTool.vue';
 
 /* istanbul ignore next */
 LeftToolBar.install = function(Vue) {

@@ -7,8 +7,12 @@
           "groupName": "Notice",
           "list": [
             {
-              "path": "/alert",
-              "title": "Alert 警告"
+              "path": "/installation",
+              "title": "安装"
+            },
+            {
+              "path": "/svgedit",
+              "title": "SVG编辑器"
             }
           ]
         }

@@ -1,16 +1,22 @@
 <template>
-
-  <div id="app">
+  <div id="app" :class="{ 'is-component': isComponent }">
     <main-header ></main-header>
-    <div>
-
-    <router-view />
+    <div class="main-cnt">
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    lang() {
+      return this.$route.path.split('/')[1] || 'zh-CN';
+    },
+    isComponent() {
+      return /^component-/.test(this.$route.name || '');
+    }
+  }
 };
 </script>

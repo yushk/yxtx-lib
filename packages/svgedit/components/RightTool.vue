@@ -106,7 +106,7 @@
 </template>
 <script>
 export default {
-  name: 'RightToolBar',
+  name: 'RightTool',
   props: {
     svgInfo: {
       type: Object,

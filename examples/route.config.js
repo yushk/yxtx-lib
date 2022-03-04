@@ -1,5 +1,4 @@
 import navConfig from './nav.config';
-import com from './pages/zh-CN/component';
 const LOAD_MAP = {
   'zh-CN': name => {
     return r => require.ensure([], () =>
@@ -29,8 +28,8 @@ const registerRoute = (navConfig) => {
   Object.keys(navConfig).forEach((lang, index) => {
     let navs = navConfig[lang];
     route.push({
-      path: `/${ lang }/component/`,
-      redirect: `/${ lang }/component/`,
+      path: `/${ lang }/component`,
+      redirect: `/${ lang }/component/installation`,
       component: load(lang, 'component'),
       children: []
     });
@@ -75,10 +74,10 @@ const registerRoute = (navConfig) => {
 let route = registerRoute(navConfig);
 route = route.concat([{
   path: '/',
-  component: com
+  redirect: '/zh-CN/component'
 }, {
   path: '*',
-  redirect: '/'
+  redirect: '/zh-CN/component'
 }]);
 console.log('route', route);
 

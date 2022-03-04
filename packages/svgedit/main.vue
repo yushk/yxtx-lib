@@ -2,7 +2,7 @@
   <div id="components-layout">
     <div class="pageMain">
       <div class="pageMain-left">
-        <LeftToolBar :svg-info-data="svgInfoData" />
+        <yx-left-tool :svg-info-data="svgInfoData" @setCurrent="setCurrent"/>
         <div class="pageMain-left-tools">
           <span>画布宽度：</span>
           <el-input-number v-model="Bg.width" />
@@ -125,7 +125,7 @@
                 )
               "
             >
-              <SvgComponents
+              <yx-svg-item
                 :component-prop="item"
                 :svg-info-data="svgInfoData"
               />
@@ -133,7 +133,7 @@
           </svg>
         </div>
       </div>
-      <RightToolBar
+      <yx-right-tool
         :svg-info="selectSvgInfo"
         style="width: 300px; flex: 0 0 auto"
         @setTableAttr="setTableAttr"
@@ -180,16 +180,11 @@
   </div>
 </template>
 <script>
-import LeftToolBar from './components/LeftToolBar.vue';
-import RightToolBar from './components/RightToolBar.vue';
-import SvgComponents from './components/SvgComponents.vue';
 import coms from 'main/assets/json/InterfaceReturn.json';
 import example from 'main/assets/json/example.json';
-import { mapGetters } from 'vuex';
 import { GenUUid } from 'main/utils/UCore.js';
 export default {
-  name: 'YxSvgEdit',
-  components: { LeftToolBar, RightToolBar, SvgComponents },
+  name: 'SvgEdit',
   data() {
     return {
       testAddSvg: {
@@ -230,19 +225,23 @@ export default {
       Bg: {
         x: 0,
         y: 0,
-        height: 833,
-        width: 1920,
+        height: 540,
+        width: 960,
         svgColor: '#000000',
         size: 1 // 缩放倍数
       },
-      ctrlDown: false
+      ctrlDown: false,
+      CurrentlySelectedToolBar: {
+        Type: '', // 选中的工具栏svg类型
+        TypeName: '', // 选中的工具栏svg类型名称
+        Title: '', // 选中的工具栏svg标题
+        Color: '', // 选中的工具栏svg颜色
+        CreateType: '', // 选中工具栏的创建方式
+        EChartsOption: '' // 选中工具栏的图表默认option
+      }
     };
   },
-  computed: {
-    ...mapGetters({
-      CurrentlySelectedToolBar: 'svg/CurrentlySelectedToolBar'
-    })
-  },
+
   created() {
     const _this = this;
     // 当前页面监视键盘输入
@@ -301,11 +300,11 @@ export default {
   },
   mounted() {
     const _this = this;
-    var doc = document.getElementById('main-container');
-    this.Bg = Object.assign(this.Bg, {
-      height: doc.clientHeight,
-      width: doc.clientWidth
-    });
+    // var doc = document.getElementById('components-layout');
+    // this.Bg = Object.assign(this.Bg, {
+    //   height: doc.clientHeight,
+    //   width: doc.clientWidth
+    // });
     this.$nextTick(() => {
       const canvasdiv = _this.$refs.canvas;
       canvasdiv.addEventListener(
@@ -319,6 +318,7 @@ export default {
         'drop',
         function(e) {
           e.preventDefault();
+          console.log('canvas drop', _this.CurrentlySelectedToolBar);
           if (
             _this.CurrentlySelectedToolBar.Type === '' ||
               _this.CurrentlySelectedToolBar.CreateType !== 'draggable'
@@ -349,6 +349,20 @@ export default {
     });
   },
   methods: {
+    setCurrent(e) {
+      console.log('set setCurrent  item', e);
+      this.CurrentlySelectedToolBar = e;
+    },
+    clear() {
+      this.CurrentlySelectedToolBar = {
+        Type: '', // 选中的工具栏svg类型
+        TypeName: '', // 选中的工具栏svg类型名称
+        Title: '', // 选中的工具栏svg标题
+        Color: '', // 选中的工具栏svg颜色
+        CreateType: '', // 选中工具栏的创建方式
+        EChartsOption: '' // 选中工具栏的图表默认option
+      };
+    },
     showAddSvgModal() {
       this.addSvgVisible = true;
     },
@@ -500,7 +514,7 @@ export default {
     },
     MousedownSvg(id, index, pointX, pointY, e) {
       console.log('MousedownSvg');
-      this.$store.dispatch('svg/clear');
+      this.clear();
       // 从数组里面根据index找到当前元素
       this.mouseStatus = 1;
       this.selectSvg.ID = id;
@@ -575,7 +589,7 @@ export default {
     },
     DblClick() {
       this.selectSvgInfo = {};
-      this.$store.dispatch('svg/clear');
+      this.clear();
     },
     mouseDownBg() {
       console.log('mouseDownBg');

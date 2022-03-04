@@ -7,14 +7,14 @@
     </el-scrollbar>
     <div class="page-component__content">
       <router-view class="content"></router-view>
-      <footer-nav></footer-nav>
+      <!-- <footer-nav></footer-nav> -->
     </div>
-    <el-backtop
+    <!-- <el-backtop
       v-if="showBackToTop"
       target=".page-component__scroll .el-scrollbar__wrap"
       :right="100"
       :bottom="150"
-    ></el-backtop>
+    ></el-backtop> -->
   </div>
   </el-scrollbar>
 </template>
