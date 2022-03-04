@@ -25,22 +25,22 @@
         </h1>
         <!-- nav -->
         <ul class="nav">
-          <li class="nav-item nav-algolia-search" v-show="isComponentPage">
-            <!-- <algolia-search></algolia-search> -->
-          </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item nav-algolia-search" v-show="isComponentPage">
+            <algolia-search></algolia-search>
+          </li> -->
+          <!-- <li class="nav-item">
             <router-link
               active-class="active"
               :to="`/${ lang }/guide`">{{ langConfig.guide }}
             </router-link>
-          </li>
+          </li> -->
           <li class="nav-item">
             <router-link
               active-class="active"
               :to="`/${ lang }/component`">{{ langConfig.components }}
             </router-link>
           </li>
-          <li
+          <!-- <li
             class="nav-item nav-item-theme"
           >
             <router-link
@@ -54,7 +54,7 @@
               :to="`/${ lang }/resource`"
               exact>{{ langConfig.resource }}
             </router-link>
-          </li>
+          </li> -->
 
           <!-- gap -->
           <li class="nav-item" v-show="isComponentPage">
