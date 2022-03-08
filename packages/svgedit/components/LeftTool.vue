@@ -17,7 +17,7 @@
             <div class="title">{{ item.title }}</div>
             <img
               :title="item.title"
-              :src="item.priview_img"
+              :src="getIcon(item.priview_img)"
               draggable="draggable"
               @mousedown="
                 Mousedown(
@@ -49,33 +49,7 @@
             <div class="title">{{ item.title }}</div>
             <img
               :title="item.title"
-              :src="item.priview_img"
-              @mousedown="
-                Mousedown(
-                  item.type,
-                  item.title,
-                  item.default_attr,
-                  item.create_type
-                )
-              "
-            >
-          </li>
-        </ul>
-      </el-collapse-item>
-      <el-collapse-item
-        key="3"
-        title="图表"
-      >
-        <ul class="svg-nav-list">
-          <li
-            v-for="item in chartComponentList"
-            :key="item.type"
-          >
-            <div class="title">{{ item.title }}</div>
-            <img
-              :title="item.title"
-              :src="item.priview_img"
-              draggable="draggable"
+              :src="getIcon(item.priview_img)"
               @mousedown="
                 Mousedown(
                   item.type,
@@ -164,6 +138,9 @@ export default {
         EChartsOption: default_attr.echarts_option
       };
       this.$emit('setCurrent', CurrentlySelectedToolBar);
+    },
+    getIcon(e) {
+      return require('main/assets/img/svg' + e).default;
     }
   }
 };

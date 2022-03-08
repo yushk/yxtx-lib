@@ -4,21 +4,25 @@
       <div class="pageMain-left">
         <yx-left-tool :svg-info-data="svgInfoData" @setCurrent="setCurrent"/>
         <div class="pageMain-left-tools">
-          <span>画布宽度：</span>
-          <el-input-number v-model="Bg.width" />
-          <span>画布高度：</span>
-          <el-input-number v-model="Bg.height" />
+          <div>
+            <span>画布宽度：</span>
+            <el-input-number v-model="Bg.width" />
+            </div>
+          <div>
+            <span>画布高度：</span>
+            <el-input-number v-model="Bg.height" />
+          </div>
           <el-button
             style="width: 100px; margin-bottom: 5px"
             type="primary"
-            @click="testA"
+            @click="loadTemplate"
           >
             载入模板
           </el-button>
           <el-button
             style="width: 100px; margin-bottom: 5px"
             type="primary"
-            @click="testH"
+            @click="Preview"
           >
             预览
           </el-button>
@@ -183,6 +187,7 @@
 import coms from 'main/assets/json/InterfaceReturn.json';
 import example from 'main/assets/json/example.json';
 import { GenUUid } from 'main/utils/UCore.js';
+import { launchFullScreen } from 'main/utils/fullScreen.js';
 export default {
   name: 'SvgEdit',
   data() {
@@ -390,7 +395,7 @@ export default {
       localStorage.setItem('svginfo', JSON.stringify(this.svgLists));
       const datastr =
           'data:text/json;charset=utf-8,' +
-          encodeURIComponent(JSON.stringify(this.svgLists));
+          encodeURIComponent(JSON.stringify({bg: this.Bg, items: this.svgLists}));
       const download = document.createElement('a');
       download.setAttribute('href', datastr);
       download.setAttribute('download', 'download.json');
@@ -595,28 +600,21 @@ export default {
       console.log('mouseDownBg');
       this.selectSvgInfo = this.Bg;
     },
-    testA() {
+    /**
+     * @type api
+     * @desc 载入本地模板
+     * */
+    loadTemplate(json) {
+      json = example;
+      if (!Object.hasOwn(json, 'bg') || !Object.hasOwn(json, 'items')) {
+        console.log('模板格式错误，缺少bg 或items属性');
+        return false;
+      }
       // 载入模板
       this.Bg = example.bg;
       this.svgLists = example.items;
-      // this.$axios
-      //   .get('/example.json')
-      //   .then(function (response) {
-      //     // console.log(response.data);
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error)
-      //   })
     },
-    testH() {
-      localStorage.setItem(
-        'svginfo',
-        JSON.stringify({ bg: this.Bg, items: this.svgLists })
-      );
-      this.$router.push({
-        path: '/personnelManagement/svg'
-      });
-    },
+
     // 设置表格属性
     setTableAttr(id, rowCount, colCount) {
       // 根据当前id找到当前表格的index
@@ -655,7 +653,15 @@ export default {
         tableData.push(tableRowData);
       }
       this.svgLists[tableIndex].tableData = tableData;
+    },
+    /**
+     * @type api
+     * @desc 预览方法
+     * */
+    Preview() {
+      launchFullScreen(this.$refs.canvas);
     }
+
   }
 };
 </script>

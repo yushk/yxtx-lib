@@ -343,37 +343,6 @@
     "data_type": "none",
     "create_type": "click",
     "priview_img": "/VerticalLineSvg.png"
-  },
-  {
-    "type": "EchartsPieSvg",
-    "title": "Echart饼图",
-    "panel_class": "chart",
-    "template": "<foreignObject x=\"0\" y=\"0\" width=\"600\" height=\"500\"> <v-chart :option=\"prop_data.echartsOption\" /></foreignObject>",
-    "props": [
-      "prop_data"
-    ],
-    "default_attr": {
-      "color": "#000000",
-      "echarts_option": "{\"title\":{\"text\":\"某站点用户访问来源\",\"subtext\":\"纯属虚构\",\"left\":\"center\"},\"tooltip\":{\"trigger\":\"item\"},\"legend\":{\"orient\":\"vertical\",\"left\":\"left\"},\"series\":[{\"name\":\"访问来源\",\"type\":\"pie\",\"radius\":\"50%\",\"data\":[{\"value\":1048,\"name\":\"搜索引擎\"},{\"value\":735,\"name\":\"直接访问\"},{\"value\":580,\"name\":\"邮件营销\"},{\"value\":484,\"name\":\"联盟广告\"},{\"value\":300,\"name\":\"视频广告\"}],\"emphasis\":{\"itemStyle\":{\"shadowBlur\":10,\"shadowOffsetX\":0,\"shadowColor\":\"rgba(0, 0, 0, 0.5)\"}}}]}"
-    },
-    "data_type": "echarts",
-    "create_type": "draggable",
-    "priview_img": "/ECharts_PieSvg.png"
-  },
-  {
-    "type": "EchartsBasicBarSvg",
-    "title": "Echart基础柱状图",
-    "panel_class": "chart",
-    "template": "<foreignObject x=\"0\" y=\"0\" width=\"400\" height=\"400\"> <v-chart :option=\"prop_data.echartsOption\" /></foreignObject>",
-    "props": [
-      "prop_data"
-    ],
-    "default_attr": {
-      "color": "#000000",
-      "echarts_option": "{\"xAxis\":{\"type\":\"category\",\"data\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\",\"Sun\"]},\"yAxis\":{\"type\":\"value\"},\"series\":[{\"data\":[120,200,150,80,70,110,130],\"type\":\"bar\"}]}"
-    },
-    "data_type": "echarts",
-    "create_type": "draggable",
-    "priview_img": "/ECharts_BasicBar.png"
   }
+  
 ]

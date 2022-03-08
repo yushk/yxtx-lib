@@ -7,7 +7,7 @@
     <link rel='mask-icon' href="https://raw.githubusercontent.com/ElemeFE/element/dev/examples/assets/images/element-logo-small.svg" color="#409EFF">
     <link rel="stylesheet" href="//shadow.elemecdn.com/npm/highlight.js@9.3.0/styles/color-brewer.css">
     <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.6/lib/theme-chalk/index.css">
-    <title>Vue UI framework</title>
+    <title>YXTX Vue Lib</title>
     <meta name="description" content="yxtx-lib" />
   </head>
   <body>

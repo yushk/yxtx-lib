@@ -16,7 +16,7 @@ module.exports = {
     filename: 'yxtx-lib.common.js',
     chunkFilename: '[id].js',
     libraryExport: 'default',
-    library: 'ELEMENT',
+    library: 'YXTX',
     libraryTarget: 'commonjs2'
   },
   resolve: {
@@ -61,7 +61,7 @@ module.exports = {
       },
       {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-        loader: 'url-loader'
+        loader: 'file-loader'
       }
     ]
   },
