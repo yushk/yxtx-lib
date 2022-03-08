@@ -87,11 +87,24 @@
               :max="360"
             />
           </el-form-item>
-          <el-form-item>
-            <el-button
-              type="primary"
-              class="btn-sure"
-            >确定</el-button>
+                    <el-form-item
+            v-if="selectSvgInfo.width"
+            label="宽度"
+          >
+            <el-input-number
+              v-model="selectSvgInfo.width"
+              :min="0"
+            />
+          </el-form-item>
+
+          <el-form-item
+            v-if="selectSvgInfo.height"
+            label="高度"
+          >
+            <el-input-number
+              v-model="selectSvgInfo.height"
+              :min="0"
+            />
           </el-form-item>
         </el-form>
       </el-tab-pane>

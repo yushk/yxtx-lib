@@ -3,51 +3,45 @@
     <div class="pageMain">
       <div class="pageMain-left">
         <yx-left-tool :svg-info-data="svgInfoData" @setCurrent="setCurrent"/>
-        <div class="pageMain-left-tools">
-          <div>
-            <span>画布宽度：</span>
-            <el-input-number v-model="Bg.width" />
-            </div>
-          <div>
-            <span>画布高度：</span>
-            <el-input-number v-model="Bg.height" />
+        <slot name="tools">
+          <div class="pageMain-left-tools">
+            <el-button
+              style="width: 100px; margin-bottom: 5px"
+              type="primary"
+              @click="loadTemplate"
+            >
+              载入模板
+            </el-button>
+            <el-button
+              style="width: 100px; margin-bottom: 5px"
+              type="primary"
+              @click="Preview"
+            >
+              预览
+            </el-button>
+            <el-button
+              style="width: 100px; margin-bottom: 5px"
+              type="primary"
+              @click="showAddSvgModal"
+            >
+              添加组件
+            </el-button>
+            <el-button
+              style="width: 100px; margin-bottom: 5px"
+              type="primary"
+              @click="exportSvg"
+            >
+              导出svg
+            </el-button>
+            <el-button
+              style="width: 100px; margin-bottom: 5px"
+              type="primary"
+              @click="exportData"
+            >
+              导出数据
+            </el-button>
           </div>
-          <el-button
-            style="width: 100px; margin-bottom: 5px"
-            type="primary"
-            @click="loadTemplate"
-          >
-            载入模板
-          </el-button>
-          <el-button
-            style="width: 100px; margin-bottom: 5px"
-            type="primary"
-            @click="Preview"
-          >
-            预览
-          </el-button>
-          <el-button
-            style="width: 100px; margin-bottom: 5px"
-            type="primary"
-            @click="showAddSvgModal"
-          >
-            添加组件
-          </el-button>
-          <el-button
-            style="width: 100px; margin-bottom: 5px"
-            type="primary"
-            @click="exportSvg"
-          >
-            导出svg
-          </el-button>
-          <el-button
-            style="width: 100px; margin-bottom: 5px"
-            type="primary"
-            @click="exportData"
-          >
-            导出数据
-          </el-button>
-        </div>
+        </slot>
       </div>
       <div class="centerContain">
         <div
@@ -184,10 +178,10 @@
   </div>
 </template>
 <script>
-import coms from 'main/assets/json/InterfaceReturn.json';
 import example from 'main/assets/json/example.json';
 import { GenUUid } from 'main/utils/UCore.js';
 import { launchFullScreen } from 'main/utils/fullScreen.js';
+
 export default {
   name: 'SvgEdit',
   data() {
@@ -207,7 +201,6 @@ export default {
       },
       addSvgVisible: false,
       versionModelVisible: false,
-      svgInfoData: [], // 接口获取到的组件数据
       shrink: true, // 收缩状态  true收缩  false展开
       svgLists: [], // svg列表
       // 鼠标位置
@@ -246,13 +239,25 @@ export default {
       }
     };
   },
-
+  props: {
+    coms: {
+      type: Array,
+      default: function() {
+        return [];
+      }
+    }
+  },
+  computed: {
+    svgInfoData() {
+      return this.coms;
+    }
+  },
   created() {
     const _this = this;
     // 当前页面监视键盘输入
     document.onkeydown = function(e) {
       // 事件对象兼容
-      const e1 = e || window.event || arguments.callee.caller.arguments[0];
+      const e1 = e || window.event;
       // ctrl  按下
       if (e1 && e1.ctrlKey) {
         _this.ctrlDown = true;
@@ -299,9 +304,6 @@ export default {
     document.onkeyup = function(e) {
       _this.ctrlDown = false;
     };
-    console.log('coms', coms);
-    // 请求接口获取组件
-    this.svgInfoData = coms;
   },
   mounted() {
     const _this = this;
@@ -372,37 +374,13 @@ export default {
       this.addSvgVisible = true;
     },
     addSvgHandleOk() {
-      this.svgInfoData[this.svgInfoData.length] = this.testAddSvg;
       this.addSvgVisible = false;
+      this.$emit('addSvgHandleOk', this.testAddSvg);
     },
     versionModelHandleOk() {
       this.versionModelVisible = false;
     },
-    exportSvg() {
-      let exportStr = document.querySelector('#svgCanvas').outerHTML;
-      exportStr = exportStr
-        .replace('width="100%"', 'width="1920"')
-        .replace('height="100%"', 'height="1080"');
-      const datastr = 'data:text;charset=utf-8,' + encodeURIComponent(exportStr);
-      const download = document.createElement('a');
-      download.setAttribute('href', datastr);
-      download.setAttribute('download', 'download.html');
-      download.click();
-      download.remove();
-      console.log(exportStr);
-    },
-    exportData() {
-      localStorage.setItem('svginfo', JSON.stringify(this.svgLists));
-      const datastr =
-          'data:text/json;charset=utf-8,' +
-          encodeURIComponent(JSON.stringify({bg: this.Bg, items: this.svgLists}));
-      const download = document.createElement('a');
-      download.setAttribute('href', datastr);
-      download.setAttribute('download', 'download.json');
-      download.click();
-      download.remove();
-      console.log(JSON.stringify(this.svgLists));
-    },
+
     MouseMove(e) {
       const _this = this;
 
@@ -602,10 +580,46 @@ export default {
     },
     /**
      * @type api
+     * @desc 导出数据
+     * */
+    exportData() {
+      localStorage.setItem('svginfo', JSON.stringify(this.svgLists));
+      const datastr =
+          'data:text/json;charset=utf-8,' +
+          encodeURIComponent(JSON.stringify({bg: this.Bg, items: this.svgLists}));
+      const download = document.createElement('a');
+      download.setAttribute('href', datastr);
+      download.setAttribute('download', 'download.json');
+      download.click();
+      download.remove();
+      console.log(JSON.stringify(this.svgLists));
+    },
+    /**
+     * @type api
+     * @desc 导出svg
+     * */
+    exportSvg() {
+      let exportStr = document.querySelector('#svgCanvas').outerHTML;
+      exportStr = exportStr
+        .replace('width="100%"', 'width="1920"')
+        .replace('height="100%"', 'height="1080"');
+      const datastr = 'data:text;charset=utf-8,' + encodeURIComponent(exportStr);
+      const download = document.createElement('a');
+      download.setAttribute('href', datastr);
+      download.setAttribute('download', 'download.html');
+      download.click();
+      download.remove();
+      console.log(exportStr);
+    },
+    /**
+     * @type api
      * @desc 载入本地模板
      * */
     loadTemplate(json) {
-      json = example;
+      if (json) {
+        console.log('模板为空');
+        return false;
+      }
       if (!Object.hasOwn(json, 'bg') || !Object.hasOwn(json, 'items')) {
         console.log('模板格式错误，缺少bg 或items属性');
         return false;

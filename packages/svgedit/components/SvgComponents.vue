@@ -8,13 +8,13 @@
 import { use } from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { PieChart, BarChart } from 'echarts/charts';
+import Vue from 'vue';
 import {
   TitleComponent,
   TooltipComponent,
   LegendComponent,
   GridComponent
 } from 'echarts/components';
-import { THEME_KEY } from 'vue-echarts';
 use([
   SVGRenderer,
   PieChart,
@@ -24,12 +24,11 @@ use([
   GridComponent,
   BarChart
 ]);
+let importComponents = {};
 export default {
   name: 'SvgItem',
-  components: {},
-  provide: {
-    [THEME_KEY]: 'dark'
-  },
+  components: importComponents,
+
   props: {
     svgInfoData: {
       type: Array,
@@ -49,14 +48,22 @@ export default {
       componentTag: ''
     };
   },
+  beforeCreate() {
+    // try {
+    //   this.svgInfoData.forEach((f) => {
+    //     let componentInfo = Vue.extend({
+    //       template: `<fragment>${f.template}</fragment>`,
+    //       props: f.props
+    //     });
+    //     Vue.component(f.type, componentInfo);
+    //     // importComponents[f.type] = componentInfo;
+    //   });
+    // } catch (e) {
+    //   console.log('error', e);
+    // }
+  },
   created() {
-    // this.svgInfoData.forEach((f) => {
-    //   let componentInfo = {
-    //     template: f.template,
-    //     props: f.props,
-    //   }
-    //   importComponents[f.type] = componentInfo
-    // })
+
   },
   methods: {}
 };

@@ -17,7 +17,7 @@
             <div class="title">{{ item.title }}</div>
             <img
               :title="item.title"
-              :src="getIcon(item.priview_img)"
+              :src="item.priview_img"
               draggable="draggable"
               @mousedown="
                 Mousedown(
@@ -49,7 +49,7 @@
             <div class="title">{{ item.title }}</div>
             <img
               :title="item.title"
-              :src="getIcon(item.priview_img)"
+              :src="item.priview_img"
               @mousedown="
                 Mousedown(
                   item.type,
@@ -138,9 +138,6 @@ export default {
         EChartsOption: default_attr.echarts_option
       };
       this.$emit('setCurrent', CurrentlySelectedToolBar);
-    },
-    getIcon(e) {
-      return require('main/assets/img/svg' + e).default;
     }
   }
 };
