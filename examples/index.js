@@ -8,12 +8,11 @@ import Yxtx from 'main/index.js';
 Vue.use(Yxtx);
 Vue.use(VueRouter);
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-import './demo-styles/index.scss';
+import 'packages/theme-chalk/src/index.scss';
 import './assets/styles/common.css';
 import './assets/styles/fonts/style.css';
 import icon from './icon.json';
-
+import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 Vue.prototype.$icon = icon; // Icon 列表页用
 

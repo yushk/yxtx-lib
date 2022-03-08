@@ -1,16 +1,25 @@
 {
-  "name": "yxtx",
+  "name": "yxtx-lib",
   "version": "1.0.0",
   "description": "vue2 components",
   "author": "yushk <945009587@qq.com>",
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/yxtx-lib.common.js",
+  "files": [
+    "lib",
+    "src",
+    "packages"
+  ],
   "scripts": {
     "bootstrap": "yarn || npm i",
     "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server  --config build/webpack.dev.js & node build/bin/template.js",
-    "build:demo": "webpack --config build/webpack.demo.js",
-    "build": "webpack --config build/webpack.config.js"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server  --config build/webpack.dev.js",
+    "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --quiet",
+    "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage",
+    "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
+    "build:utils": "cross-env BABEL_ENV=utils babel src --out-dir lib --ignore src/index.js",
+    "build:umd": "node build/bin/build-locale.js",
+    "dist": "npm run clean && webpack --config build/webpack.conf.js && webpack --config build/webpack.common.js && webpack --config build/webpack.component.js && npm run build:theme"
   },
   "keywords": [
     "vue",
@@ -33,6 +42,7 @@
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
+    "cp-cli": "^2.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.6.0",
     "eslint": "^6.8.0",
@@ -43,6 +53,10 @@
     "eslint-plugin-vue": "^8.5.0",
     "eslint-webpack-plugin": "^3.1.1",
     "file-loader": "^6.2.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-dart-sass": "^1.0.2",
     "html-webpack-plugin": "^5.5.0",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.3.0",
@@ -50,6 +64,7 @@
     "markdown-it-container": "^2.0.0",
     "mini-css-extract-plugin": "^2.5.3",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "progress-bar-webpack-plugin": "^2.1.0",
     "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
     "style-loader": "^3.3.1",
@@ -65,7 +80,8 @@
     "vue-template-es2015-compiler": "^1.9.1",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^4.7.4",
+    "webpack-node-externals": "^3.0.0"
   },
   "peerDependencies": {
     "vue": "^2.6.14"

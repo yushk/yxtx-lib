@@ -125,7 +125,7 @@ if (isProd) {
     cacheGroups: {
       vendor: {
         test: /\/src\//,
-        name: 'element-ui',
+        name: 'yxtx-lib',
         chunks: 'all'
       }
     }

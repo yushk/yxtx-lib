@@ -29,9 +29,9 @@
       ],
       "plugins": [
         ["module-resolver", {
-          "root": ["element-ui"],
+          "root": ["yxtx-lib"],
           "alias": {
-            "element-ui/src": "element-ui/lib"
+            "yxtx-lib/src": "yxtx-lib/lib"
           }
         }]
       ]

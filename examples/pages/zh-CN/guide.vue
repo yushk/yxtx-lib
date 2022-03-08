@@ -1,36 +1,4 @@
-
-<template>
-  <div class="page-container page-guide">
-    <el-row>
-      <el-col :xs="24" :sm="5">
-        <side-nav :data="navsData" :base="`/${ lang }/guide`"></side-nav>
-      </el-col>
-      <el-col :xs="24" :sm="19">
-        <router-view class="content"></router-view>
-      </el-col>
-    </el-row>
-  </div>
-</template>
-<script>
-export default {
-  data() {
-    return {
-      lang: this.$route.meta.lang,
-      navsData: [
-        {
-          path: '/design',
-          name: '设计原则'
-        },
-        {
-          path: '/nav',
-          name: '导航'
-        }
-      ]
-    };
-  }
-};
-</script>
-<style lang="scss">
+<style>
   .page-guide {
     padding: 55px 30px 95px;
     box-sizing: border-box;
@@ -90,4 +58,34 @@ export default {
     }
   }
 </style>
-
+<template>
+  <div class="page-container page-guide">
+    <el-row>
+      <el-col :xs="24" :sm="5">
+        <side-nav :data="navsData" :base="`/${ lang }/guide`"></side-nav>
+      </el-col>
+      <el-col :xs="24" :sm="19">
+        <router-view class="content"></router-view>
+      </el-col>
+    </el-row>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        lang: this.$route.meta.lang,
+        navsData: [
+          {
+            path: '/design',
+            name: '设计原则'
+          },
+          {
+            path: '/nav',
+            name: '导航'
+          }
+        ]
+      };
+    }
+  };
+</script>

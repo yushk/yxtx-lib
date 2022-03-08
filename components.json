@@ -1,6 +1,6 @@
 {
   "svgedit": "./packages/svgedit/index.js",
-  "svgitem": "./packages/svgitem/index.js",
+  "svgitem": "./packages/svgcomponents/index.js",
   "svgleft": "./packages/svgleft/index.js",
   "svgpreview": "./packages/svgpreview/index.js",
   "svgright": "./packages/svgright/index.js"

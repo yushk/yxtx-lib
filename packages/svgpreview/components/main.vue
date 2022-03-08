@@ -133,20 +133,3 @@ export default {
   }
 };
 </script>
-<style scoped lang="scss">
-  .svg-contain {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
-  .btns-content {
-    position: fixed;
-    left: 10px;
-    bottom: 10px;
-    button {
-      margin-right: 10px;
-    }
-  }
-</style>
