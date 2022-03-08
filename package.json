@@ -1,6 +1,6 @@
 {
   "name": "yxtx-lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "vue2 components",
   "author": "yushk <945009587@qq.com>",
   "license": "MIT",
@@ -14,6 +14,7 @@
     "bootstrap": "yarn || npm i",
     "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server  --config build/webpack.dev.js",
+    "build": " rimraf dist  && cross-env NODE_ENV=production webpack  --config build/webpack.dev.js",
     "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --quiet",
     "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage",
     "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
@@ -57,6 +58,7 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-cssmin": "^0.2.0",
     "gulp-dart-sass": "^1.0.2",
+    "highlight.js": "^11.4.0",
     "html-webpack-plugin": "^5.5.0",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.3.0",

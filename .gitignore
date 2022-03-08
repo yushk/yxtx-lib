@@ -15,7 +15,9 @@ examples/pages/en-US
 examples/pages/zh-CN
 examples/pages/es
 examples/pages/fr-FR
+examples/yxtx-lib
 lib
+dist
 .npmrc
 coverage
 waiter.config.js

@@ -8,7 +8,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 var webpackConfig = {
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   entry: {
     index: './examples/index.js'
   },
@@ -77,12 +77,16 @@ var webpackConfig = {
       },
       {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-        loader: 'file-loader'
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: path.posix.join('static', '[name].[hash:7].[ext]')
+            }
+          }
+        ]
       }
-      // {
-      //   test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-      //   loader: 'url-loader'
-      // }
     ]
   },
   plugins: [
@@ -99,13 +103,17 @@ var webpackConfig = {
     path: path.resolve(process.cwd(), './dist/'),
     filename: '[name].[hash:7].js',
     chunkFilename: '[name].[hash:7].js'
+  },
+  optimization: {
+    minimizer: []
   }
 };
 if (isProd) {
   webpackConfig.externals = {
     vue: 'Vue',
     'vue-router': 'VueRouter',
-    'highlight.js': 'hljs'
+    'highlight.js': 'hljs',
+    'element-ui': 'ELEMENT'
   };
   webpackConfig.plugins.push(
     new MiniCssExtractPlugin({

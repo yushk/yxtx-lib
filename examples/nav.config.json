@@ -1,15 +1,23 @@
 {
   "zh-CN": [
     {
-      "name": "组件",
+      "name": "安装",
       "groups": [
         {
-          "groupName": "Notice",
           "list": [
             {
               "path": "/installation",
               "title": "安装"
             },
+            {
+              "path": "/quickstart",
+              "title": "快速上手"
+            }
+          ]
+        },
+        {
+          "groupName": "Notice",
+          "list": [
             {
               "path": "/svgedit",
               "title": "SVG编辑器"
