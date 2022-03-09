@@ -72,7 +72,7 @@
           >
             <el-input-number
               v-model="selectSvgInfo.size"
-              :min="1"
+              :min="0.1"
               :max="3000"
               :step="0.1"
             />

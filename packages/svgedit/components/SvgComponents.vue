@@ -8,7 +8,6 @@
 import { use } from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { PieChart, BarChart } from 'echarts/charts';
-import Vue from 'vue';
 import {
   TitleComponent,
   TooltipComponent,
@@ -24,11 +23,8 @@ use([
   GridComponent,
   BarChart
 ]);
-let importComponents = {};
 export default {
   name: 'SvgItem',
-  components: importComponents,
-
   props: {
     svgInfoData: {
       type: Array,

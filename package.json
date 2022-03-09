@@ -1,15 +1,17 @@
 {
   "name": "yxtx-lib",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "vue2 components",
   "author": "yushk <945009587@qq.com>",
   "license": "MIT",
-  "main": "lib/yxtx-lib.common.js",
+  "main": "lib/yxtx-lib.umd.js",
   "files": [
     "lib",
     "src",
+    "types",
     "packages"
   ],
+  "typings": "types/index.d.ts",
   "scripts": {
     "bootstrap": "yarn || npm i",
     "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",

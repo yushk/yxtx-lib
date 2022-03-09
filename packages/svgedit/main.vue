@@ -2,45 +2,8 @@
   <div id="components-layout">
     <div class="pageMain">
       <div class="pageMain-left">
-        <yx-left-tool :svg-info-data="svgInfoData" @setCurrent="setCurrent"/>
+        <yx-left-tool :svg-info-data="svgInfoData" @setCurrent="setCurrent" @inlineMethods="clickMethods"/>
         <slot name="tools">
-          <div class="pageMain-left-tools">
-            <el-button
-              style="width: 100px; margin-bottom: 5px"
-              type="primary"
-              @click="loadTemplate"
-            >
-              载入模板
-            </el-button>
-            <el-button
-              style="width: 100px; margin-bottom: 5px"
-              type="primary"
-              @click="Preview"
-            >
-              预览
-            </el-button>
-            <el-button
-              style="width: 100px; margin-bottom: 5px"
-              type="primary"
-              @click="showAddSvgModal"
-            >
-              添加组件
-            </el-button>
-            <el-button
-              style="width: 100px; margin-bottom: 5px"
-              type="primary"
-              @click="exportSvg"
-            >
-              导出svg
-            </el-button>
-            <el-button
-              style="width: 100px; margin-bottom: 5px"
-              type="primary"
-              @click="exportData"
-            >
-              导出数据
-            </el-button>
-          </div>
         </slot>
       </div>
       <div class="centerContain">
@@ -223,12 +186,12 @@ export default {
       Bg: {
         x: 0,
         y: 0,
-        height: 540,
-        width: 960,
+        height: this.height,
+        width: this.width,
         svgColor: '#000000',
-        size: 1 // 缩放倍数
+        size: 1
       },
-      ctrlDown: false,
+      ctrlDown: false, // ctrl 按下
       CurrentlySelectedToolBar: {
         Type: '', // 选中的工具栏svg类型
         TypeName: '', // 选中的工具栏svg类型名称
@@ -245,6 +208,14 @@ export default {
       default: function() {
         return [];
       }
+    },
+    width: {
+      type: Number,
+      default: 1200
+    },
+    height: {
+      type: Number,
+      default: 540
     }
   },
   computed: {
@@ -580,9 +551,9 @@ export default {
     },
     /**
      * @type api
-     * @desc 导出数据
+     * @desc 导出数据为json文件
      * */
-    exportData() {
+    exportDataJson() {
       localStorage.setItem('svginfo', JSON.stringify(this.svgLists));
       const datastr =
           'data:text/json;charset=utf-8,' +
@@ -593,6 +564,13 @@ export default {
       download.click();
       download.remove();
       console.log(JSON.stringify(this.svgLists));
+    },
+    /**
+     * @type api
+     * @desc 导出数据
+     * */
+    getJsonData() {
+      return {bg: this.Bg, items: this.svgLists};
     },
     /**
      * @type api
@@ -674,6 +652,22 @@ export default {
      * */
     Preview() {
       launchFullScreen(this.$refs.canvas);
+    },
+    clickMethods(e) {
+      switch (e) {
+        case 'exportsvg':
+          this.exportSvg();
+          break;
+        case 'exportjson':
+          this.exportDataJson();
+          break;
+        case 'preview':
+          this.Preview();
+          break;
+        case 'add':
+          this.showAddSvgModal();
+          break;
+      }
     }
 
   }

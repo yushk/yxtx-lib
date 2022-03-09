@@ -62,6 +62,18 @@
           </li>
         </ul>
       </el-collapse-item>
+            <el-collapse-item
+        key="3"
+        title="方法"
+        :disabled="false"
+      >
+        <ul class="svg-nav-list">
+          <li @click="inlineMethods('preview')" >预览</li>
+          <li @click="inlineMethods('add')" >添加组件</li>
+          <li @click="inlineMethods('exportsvg')" >导出svg</li>
+          <li @click="inlineMethods('exportjson')" >导出数据</li>
+        </ul>
+      </el-collapse-item>
     </el-collapse>
   </div>
 </template>
@@ -138,6 +150,13 @@ export default {
         EChartsOption: default_attr.echarts_option
       };
       this.$emit('setCurrent', CurrentlySelectedToolBar);
+    },
+    /**
+     * @desc 内置方法
+     * @param {*} type
+     * */
+    inlineMethods(type) {
+      this.$emit('inlineMethods', type);
     }
   }
 };

@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: path.resolve(process.cwd(), './lib'),
     publicPath: '/dist/',
-    filename: 'index.js',
+    filename: 'yxtx-lib.umd.js',
     chunkFilename: '[id].js',
     libraryTarget: 'umd',
     libraryExport: 'default',
@@ -73,7 +73,15 @@ module.exports = {
       },
       {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-        loader: 'file-loader'
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: path.posix.join('static', '[name].[hash:7].[ext]')
+            }
+          }
+        ]
       }
     ]
   },

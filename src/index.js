@@ -14,20 +14,9 @@ const components = [
   RightToolBar
 ];
 
-import Fragment from 'vue-fragment';
-import baseComponents from 'main/assets/json/InterfaceReturn.json';
-
-const install = function(Vue, opts = {}) {
+const install = function(Vue) {
   components.forEach(component => {
     Vue.component('yx' + component.name, component);
-  });
-  Vue.use(Fragment.Plugin);
-  baseComponents.forEach((e) => {
-    let com1 = Vue.extend({
-      props: e.props,
-      template: `<fragment>${e.template}</fragment>`
-    });
-    Vue.component(e.type, com1);
   });
 };
 
@@ -37,7 +26,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.0.1',
+  version: '1.0.6',
   install,
   SvgEdit,
   SvgItem,

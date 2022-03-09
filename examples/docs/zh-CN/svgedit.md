@@ -373,23 +373,20 @@
 :::
 
 ### Methods
-| 事件名称 | 说明 | 回调参数 |
-|---------- |-------- |---------- |
-| Preview | 预览 | — |
-| Preview | 预览 | — |
-| exportSvg | 预览 | — |
-| exportData | 预览 | — |
-
-
-### Events
-| 事件名称 | 说明 | 回调参数 |
-|---------- |-------- |---------- |
-| close | 关闭alert时触发的事件 | — |
+| 事件名称 | 说明 | 参数 |返回|
+|---------- |-------- |---------- |---------- |
+| Preview | 预览 | — |——|
+| loadTemplate | 载入模板数据 | {bg:{},items:{}} |-|
+| exportSvg | 导出svg文件 | — |
+| exportDataJson | 导出json文件 | — |-|
+| getJsonData | 获取json数据 | - |object|
 
 ### Attributes
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  |
 |---------- |-------------- |---------- |--------------------------------  |-------- |
-| coms     | 内置svg组件           | Object | — | — |
+| coms     | 内置svg组件     | Object | — | — |
+| width     | 画布宽度       | Number | — | 1200 |
+| height     | 画布高度      | Number | — | 540 |
 
 ### Slot
 
@@ -401,4 +398,4 @@
 ### Events
 | 事件名称 | 说明 | 回调参数 |
 |---------- |-------- |---------- |
-| addSvgHandleOk | 关闭alert时触发的事件 | — |
+| addSvgHandleOk | 添加自定义组件 回调函数 | Object |

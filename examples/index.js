@@ -34,17 +34,17 @@ Vue.component('main-header', MainHeader);
 Vue.component('side-nav', SideNav);
 // Vue.component('footer-nav', FooterNav);
 
-// import Fragment from 'vue-fragment';
-// Vue.use(Fragment.Plugin);
+import Fragment from 'vue-fragment';
+Vue.use(Fragment.Plugin);
 
-// import coms from 'main/assets/json/InterfaceReturn.json';
-// coms.forEach((e) => {
-//   let com1 = Vue.extend({
-//     props: e.props,
-//     template: `<fragment>${e.template}</fragment>`
-//   });
-//   Vue.component(e.type, com1);
-// });
+import coms from 'main/assets/json/InterfaceReturn.json';
+coms.forEach((e) => {
+  let com1 = Vue.extend({
+    props: e.props,
+    template: `<fragment>${e.template}</fragment>`
+  });
+  Vue.component(e.type, com1);
+});
 
 const router = new VueRouter({
   mode: 'hash',
