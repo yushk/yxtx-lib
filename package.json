@@ -1,6 +1,6 @@
 {
   "name": "yxtx-lib",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "vue2 components",
   "author": "yushk <945009587@qq.com>",
   "license": "MIT",
@@ -15,14 +15,16 @@
   "scripts": {
     "bootstrap": "yarn || npm i",
     "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server  --config build/webpack.dev.js",
-    "build": " rimraf dist  && cross-env NODE_ENV=production webpack  --config build/webpack.dev.js",
+    "build:index": " node build/bin/build-entry.js",
+    "dev": " cross-env NODE_ENV=development webpack-dev-server  --config build/webpack.dev.js",
+    "build": "npm run build:index && rimraf dist  && cross-env NODE_ENV=production webpack  --config build/webpack.dev.js",
     "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --quiet",
     "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage",
     "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
     "build:utils": "cross-env BABEL_ENV=utils babel src --out-dir lib --ignore src/index.js",
     "build:umd": "node build/bin/build-locale.js",
-    "dist": "npm run clean && webpack --config build/webpack.conf.js && webpack --config build/webpack.common.js && webpack --config build/webpack.component.js && npm run build:theme"
+    "dist": "npm run clean && webpack --config build/webpack.conf.js && webpack --config build/webpack.common.js && npm run build:theme",
+    "build:com": "webpack --config build/webpack.component.js "
   },
   "keywords": [
     "vue",
@@ -62,6 +64,7 @@
     "gulp-dart-sass": "^1.0.2",
     "highlight.js": "^11.4.0",
     "html-webpack-plugin": "^5.5.0",
+    "json-templater": "^1.2.0",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.3.0",
     "markdown-it-chain": "^1.3.0",
@@ -76,6 +79,7 @@
     "throttle-debounce": "^1.1.0",
     "transliteration": "^1.6.6",
     "uglifyjs-webpack-plugin": "^2.2.0",
+    "uppercamelcase": "^3.0.0",
     "url-loader": "^4.1.1",
     "vue": "^2.6.14",
     "vue-loader": "^15.9.8",

@@ -39,7 +39,7 @@
   </div>
 </template>
 <script>
-import SvgComponents from '../../svgcomponents';
+import SvgComponents from '../../svgitem';
 export default {
   name: 'SvgPreview',
   components: { SvgComponents },
@@ -71,19 +71,19 @@ export default {
     testF() {
       // 找出所有断路器
       const anyCircuitBreakerList = this.svgLists.filter(
-        (f) => f.type == 'CircuitBreakerSvg'
+        (f) => f.type === 'CircuitBreakerSvg'
       );
       // 找出所有的电线开关
       const anyWireBreakList = this.svgLists.filter(
-        (f) => f.type == 'WireBreakOnSvg' || f.type == 'WireBreakOffSvg'
+        (f) => f.type === 'WireBreakOnSvg' || f.type === 'WireBreakOffSvg'
       );
       // 找到所有饼图
       const anyEchartsPieList = this.svgLists.filter(
-        (f) => f.type == 'EchartsPieSvg'
+        (f) => f.type === 'EchartsPieSvg'
       );
       // 找到所有柱状图
       const anyEchartsBasicBarSvgList = this.svgLists.filter(
-        (f) => f.type == 'EchartsBasicBarSvg'
+        (f) => f.type === 'EchartsBasicBarSvg'
       );
       this.analogDataTimer = setInterval(function() {
         anyCircuitBreakerList.forEach((anyCircuitBreaker) => {

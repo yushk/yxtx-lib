@@ -3,5 +3,6 @@
   "svgitem": "./packages/svgcomponents/index.js",
   "svgleft": "./packages/svgleft/index.js",
   "svgpreview": "./packages/svgpreview/index.js",
-  "svgright": "./packages/svgright/index.js"
+  "svgright": "./packages/svgright/index.js",
+  "virtuallist": "./packages/virtuallist/index.js"
 }

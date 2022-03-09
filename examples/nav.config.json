@@ -21,6 +21,10 @@
             {
               "path": "/svgedit",
               "title": "SVG编辑器"
+            },
+            {
+              "path": "/virtuallist",
+              "title": "虚拟列表"
             }
           ]
         }
