@@ -2,6 +2,20 @@
 
 ### 基本用法
 
+vue2 中需全局导入 svg基础组件
+```javascript
+import Fragment from 'vue-fragment';
+Vue.use(Fragment.Plugin);
+
+import coms from 'main/assets/json/InterfaceReturn.json';
+coms.forEach((e) => {
+  let com1 = Vue.extend({
+    props: e.props,
+    template: `<fragment>${e.template}</fragment>`
+  });
+  Vue.component(e.type, com1);
+});
+```
 :::demo svgedit demo。
 ```html
 <template>

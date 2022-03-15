@@ -16,7 +16,7 @@ import 'yxtx-lib/lib/theme-chalk/index.css'
 
 import App from './App.vue';
 
-Vue.use(ElementUI);
+Vue.use(YXTX);
 
 new Vue({
   el: '#app',
