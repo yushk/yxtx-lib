@@ -16,15 +16,38 @@
           ]
         },
         {
-          "groupName": "Notice",
+          "groupName": "Tools",
           "list": [
             {
               "path": "/svgedit",
               "title": "SVG编辑器"
-            },
+            }
+          ]
+        },
+        {
+          "groupName": "Components",
+          "list": [
             {
               "path": "/virtuallist",
               "title": "虚拟列表"
+            }
+          ]
+        },
+        {
+          "groupName": "Amination",
+          "list": [
+            {
+              "path": "/amination",
+              "title": "动画"
+            }
+          ]
+        },
+        {
+          "groupName": "联系方式",
+          "list": [
+            {
+              "path": "/user",
+              "title": "联系方式"
             }
           ]
         }

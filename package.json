@@ -1,6 +1,6 @@
 {
   "name": "yxtx-lib",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "vue2 components",
   "author": "yushk <945009587@qq.com>",
   "license": "MIT",
@@ -17,13 +17,13 @@
     "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",
     "build:index": " node build/bin/build-entry.js",
     "dev": " cross-env NODE_ENV=development webpack-dev-server  --config build/webpack.dev.js",
-    "build": "npm run build:index && rimraf dist  && cross-env NODE_ENV=production webpack  --config build/webpack.dev.js",
+    "build:demo": "npm run build:index && rimraf dist  && cross-env NODE_ENV=production webpack  --config build/webpack.dev.js",
     "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --quiet",
     "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage",
     "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
     "build:utils": "cross-env BABEL_ENV=utils babel src --out-dir lib --ignore src/index.js",
     "build:umd": "node build/bin/build-locale.js",
-    "dist": "npm run clean && webpack --config build/webpack.conf.js && webpack --config build/webpack.common.js && npm run build:theme",
+    "build:npm": "npm run clean && npm run build:index && webpack --config build/webpack.conf.js && webpack --config build/webpack.common.js && npm run build:theme",
     "build:com": "webpack --config build/webpack.component.js "
   },
   "keywords": [

@@ -4,5 +4,8 @@
   "svgleft": "./packages/svgleft/index.js",
   "svgpreview": "./packages/svgpreview/index.js",
   "svgright": "./packages/svgright/index.js",
-  "virtuallist": "./packages/virtuallist/index.js"
+  "virtuallist": "./packages/virtuallist/index.js",
+  "charge": "./packages/charge/index.js",
+  "load": "./packages/loading/index.js",
+  "clock": "./packages/clock/index.js"
 }

@@ -4,7 +4,7 @@
       <div ref="phantom" class="infinite-list-phantom" :style="{ height: estimatedItemSize*listData.length + 'px' }" />
       <div ref="content" class="infinite-list">
         <div v-for="item in visibleData" :id="item._index" ref="items" :key="item._index" class="infinite-list-item">
-          <slot :data="item.item" />
+          <slot :row="item.item" >{{item.item}}</slot>
         </div>
       </div>
     </div>

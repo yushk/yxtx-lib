@@ -6,6 +6,9 @@ import Svgleft from '../packages/svgleft/index.js';
 import Svgpreview from '../packages/svgpreview/index.js';
 import Svgright from '../packages/svgright/index.js';
 import Virtuallist from '../packages/virtuallist/index.js';
+import Charge from '../packages/charge/index.js';
+import Load from '../packages/load/index.js';
+import Clock from '../packages/clock/index.js';
 
 
 const components = [
@@ -14,7 +17,10 @@ const components = [
   Svgleft,
   Svgpreview,
   Svgright,
-  Virtuallist
+  Virtuallist,
+  Charge,
+  Load,
+  Clock
 ];
 
 const install = function(Vue) {
@@ -30,12 +36,15 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.0.7',
+  version: '1.0.8',
   install,
   Svgedit,
   Svgitem,
   Svgleft,
   Svgpreview,
   Svgright,
-  Virtuallist
+  Virtuallist,
+  Charge,
+  Load,
+  Clock
 };

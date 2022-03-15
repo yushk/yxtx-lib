@@ -2,7 +2,7 @@
 
 ### 基本用法
 
-:::demo svg`coms`属性导入基础svg`icon`。
+:::demo svgedit demo。
 ```html
 <template>
   <yx-svg-edit :coms="coms">
