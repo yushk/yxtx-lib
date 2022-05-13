@@ -16,24 +16,29 @@
         <h1><router-link :to="`/${ lang }`">
           <!-- logo -->
           <slot>
-            <!-- <img
-              src="../assets/images/CloudStone.png"
-              alt="element-logo"
-              class="nav-logo"/> -->
+            <img
+              :src="require('../assets/images/CloudStone.png').default"
+              alt="yxtx-logo"
+              class="nav-logo"/>
           </slot>
         </router-link>
         </h1>
         <!-- nav -->
         <ul class="nav">
-          <!-- <li class="nav-item nav-algolia-search" v-show="isComponentPage">
-            <algolia-search></algolia-search>
-          </li> -->
-          <!-- <li class="nav-item">
-            <router-link
+
+          <li class="nav-item">
+            <a
               active-class="active"
-              :to="`/${ lang }/guide`">{{ langConfig.guide }}
-            </router-link>
-          </li> -->
+              :href="`https://yushk.github.io/tools/compress_picture`">{{ langConfig.pic }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              active-class="active"
+              :href="`https://yushk.github.io/turn/`">{{ langConfig.turn }}
+            </a>
+          </li>
+
           <li class="nav-item">
             <router-link
               active-class="active"
@@ -157,8 +162,10 @@ export default {
     },
     langConfig() {
       return {
+        'pic': '图片压缩',
+        'turn': 'game',
         'guide': '指南',
-        'components': '组件',
+        'components': '指南',
         'theme': '主题',
         'resource': '资源'
       };
@@ -332,7 +339,8 @@ export default {
 
     .nav-logo,
     .nav-logo-small {
-      vertical-align: sub;
+      vertical-align: middle;
+      width: 80px;
     }
 
     .nav-logo-small {

@@ -2,7 +2,7 @@
 
 ### 基本用法
 
-vue2 中需全局导入 svg基础组件
+vue2 中需全局导入 svg基础组件 在vue 入口文件 main.js
 ```javascript
 import Fragment from 'vue-fragment';
 Vue.use(Fragment.Plugin);
