@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var Components = require('../../components.json');
+var Components = require('../../components.json').components;
 var themes = [
   'theme-chalk'
 ];

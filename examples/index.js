@@ -38,6 +38,7 @@ import Fragment from 'vue-fragment';
 Vue.use(Fragment.Plugin);
 
 import coms from 'main/assets/json/InterfaceReturn.json';
+console.log('coms', coms);
 coms.forEach((e) => {
   let com1 = Vue.extend({
     props: e.props,

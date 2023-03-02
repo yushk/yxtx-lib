@@ -1,4 +1,4 @@
-<style scoped>
+<style scoped lang="scss">
   h3 {
     margin-bottom: 15px;
   }
@@ -33,7 +33,7 @@
     z-index: 1000;
     -webkit-overflow-scrolling: touch;
     outline: 0;
-  
+
     .imgWrap {
       margin: 0 auto;
       position: relative;
@@ -128,39 +128,39 @@
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        imgUrl: '',
-        imgBound: {},
-        showDialog: false,
-        imgStyle: {},
-        imgWrapStyle: {}
-      };
-    },
-    watch: {
-      showDialog(val) {
-        document.body.style.overflow = val ? 'hidden' : '';
-      }
-    },
-    methods: {
-      enlarge(imgWidth, ev) {
-        var imgNode = ev.target;
-        // var bound = imgNode.getBoundingClientRect();
-        var offset = {};
-        var doc = document;
-
-        offset.left = (doc.body.scrollWidth - imgWidth) / 2;
-        offset.top = 100;
-
-        this.imgUrl = imgNode.src;
-        this.imgBound = imgNode.getBoundingClientRect();
-
-        this.imgWrapStyle.transformOrigin = `${ev.clientX}px ${ev.clientY}px`;
-        // this.imgStyle.transformOrigin = `${ev.clientX}px ${ev.clientY}px`;
-        this.imgStyle.width = imgWidth + 'px';
-        this.showDialog = true;
-      }
+export default {
+  data() {
+    return {
+      imgUrl: '',
+      imgBound: {},
+      showDialog: false,
+      imgStyle: {},
+      imgWrapStyle: {}
+    };
+  },
+  watch: {
+    showDialog(val) {
+      document.body.style.overflow = val ? 'hidden' : '';
     }
-  };
+  },
+  methods: {
+    enlarge(imgWidth, ev) {
+      var imgNode = ev.target;
+      // var bound = imgNode.getBoundingClientRect();
+      var offset = {};
+      var doc = document;
+
+      offset.left = (doc.body.scrollWidth - imgWidth) / 2;
+      offset.top = 100;
+
+      this.imgUrl = imgNode.src;
+      this.imgBound = imgNode.getBoundingClientRect();
+
+      this.imgWrapStyle.transformOrigin = `${ev.clientX}px ${ev.clientY}px`;
+      // this.imgStyle.transformOrigin = `${ev.clientX}px ${ev.clientY}px`;
+      this.imgStyle.width = imgWidth + 'px';
+      this.showDialog = true;
+    }
+  }
+};
 </script>

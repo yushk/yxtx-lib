@@ -1,6 +1,3 @@
-<!--
- * @Author: yaolunmao
--->
 <template>
   <div class="rightNav">
     <el-tabs

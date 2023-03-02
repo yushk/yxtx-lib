@@ -1,6 +1,6 @@
 var path = require('path');
 var nodeExternals = require('webpack-node-externals');
-var Components = require('../components.json');
+var Components = require('../components.json').components;
 
 var externals = {};
 

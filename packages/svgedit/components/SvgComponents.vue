@@ -1,6 +1,3 @@
-<!--
- * @Author: yaolunmao
--->
 <template>
   <component :is="componentProp.type" :prop_data="componentProp"></component>
 </template>

@@ -7,7 +7,7 @@ vue2 中需全局导入 svg基础组件 在vue 入口文件 main.js
 import Fragment from 'vue-fragment';
 Vue.use(Fragment.Plugin);
 
-import coms from 'main/assets/json/InterfaceReturn.json';
+import coms from 'yxtx-lib/src/assets/json/InterfaceReturn.json';
 coms.forEach((e) => {
   let com1 = Vue.extend({
     props: e.props,

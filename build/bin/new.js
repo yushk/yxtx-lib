@@ -95,7 +95,7 @@ export declare class El${ComponentName} extends ElementUIComponent {
 ];
 
 // 添加到 components.json
-const componentsFile = require('../../components.json');
+const componentsFile = require('../../components.json').components;
 if (componentsFile[componentname]) {
   console.error(`${componentname} 已存在.`);
   process.exit(1);

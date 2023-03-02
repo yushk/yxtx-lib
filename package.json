@@ -1,6 +1,6 @@
 {
   "name": "yxtx-lib",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "vue2 components",
   "author": "yushk <945009587@qq.com>",
   "license": "MIT",
@@ -14,10 +14,10 @@
   "typings": "types/index.d.ts",
   "scripts": {
     "bootstrap": "yarn || npm i",
+    "dev": " cross-env NODE_ENV=development webpack-dev-server  --config build/webpack.dev.js",
     "build:file": "node build/bin/iconInit.js & node build/bin/build-entry.js & node build/bin/i18n.js & node build/bin/version.js",
     "build:index": " node build/bin/build-entry.js",
-    "dev": " cross-env NODE_ENV=development webpack-dev-server  --config build/webpack.dev.js",
-    "build:demo": "npm run build:index && rimraf dist  && cross-env NODE_ENV=production webpack  --config build/webpack.dev.js",
+    "build:demo": "npm run build:index && rimraf dist  && cross-env NODE_ENV=development webpack  --config build/webpack.dev.js",
     "lint": "eslint src/**/* test/**/* packages/**/* build/**/* --quiet",
     "clean": "rimraf lib && rimraf packages/*/lib && rimraf test/**/coverage",
     "build:theme": "node build/bin/gen-cssfile && gulp build --gulpfile packages/theme-chalk/gulpfile.js && cp-cli packages/theme-chalk/lib lib/theme-chalk",
@@ -32,7 +32,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/yushk/yxtx.git"
+    "url": "https://github.com/yushk/vue2demo"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.2.31",
