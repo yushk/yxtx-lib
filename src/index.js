@@ -9,6 +9,7 @@ import Virtuallist from '../packages/virtuallist/index.js';
 import Charge from '../packages/charge/index.js';
 import Load from '../packages/load/index.js';
 import Clock from '../packages/clock/index.js';
+import Test from './utils/test.js';
 
 
 const components = [
@@ -36,7 +37,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.0.9',
+  version: '1.1.0',
   install,
   Svgedit,
   Svgitem,
@@ -46,5 +47,6 @@ export default {
   Virtuallist,
   Charge,
   Load,
-  Clock
+  Clock,
+Test
 };

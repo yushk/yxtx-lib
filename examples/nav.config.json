@@ -19,14 +19,18 @@
           "groupName": "Tools",
           "list": [
             {
-              "path": "/svgedit",
-              "title": "SVG编辑器"
+              "path": "/test",
+              "title": "正则表达式"
             }
           ]
         },
         {
           "groupName": "Components",
           "list": [
+            {
+              "path": "/svgedit",
+              "title": "SVG编辑器"
+            },
             {
               "path": "/virtuallist",
               "title": "虚拟列表"
