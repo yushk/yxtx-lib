@@ -34,6 +34,10 @@
             {
               "path": "/virtuallist",
               "title": "虚拟列表"
+            },
+            {
+              "path": "/watermark",
+              "title": "水印或蒙版"
             }
           ]
         },

@@ -9,6 +9,7 @@ import Virtuallist from '../packages/virtuallist/index.js';
 import Charge from '../packages/charge/index.js';
 import Load from '../packages/load/index.js';
 import Clock from '../packages/clock/index.js';
+import Watermark from '../packages/watermark/index.js';
 import Test from './utils/test.js';
 
 
@@ -21,7 +22,8 @@ const components = [
   Virtuallist,
   Charge,
   Load,
-  Clock
+  Clock,
+  Watermark
 ];
 
 const install = function(Vue) {
@@ -37,7 +39,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.1.1',
+  version: '1.1.2',
   install,
   Svgedit,
   Svgitem,
@@ -48,5 +50,6 @@ export default {
   Charge,
   Load,
   Clock,
+  Watermark,
 Test
 };

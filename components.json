@@ -8,7 +8,8 @@
     "virtuallist": "./packages/virtuallist/index.js",
     "charge": "./packages/charge/index.js",
     "load": "./packages/loading/index.js",
-    "clock": "./packages/clock/index.js"
+    "clock": "./packages/clock/index.js",
+    "watermark": "./packages/watermark/index.js"
   },
   "utils":{
     "test": "./src/utils/test.js"
