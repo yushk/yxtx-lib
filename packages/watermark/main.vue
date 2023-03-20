@@ -46,8 +46,16 @@ export default {
         default:false
     },
   },
+  watch:{
+    content(){
+        this.setWatermark()
+    }
+  },
   mounted() {
     this.setWatermark()
+    window.onresize = () => {
+        this.setWatermark()
+    }
   },
   methods: {
     setWatermark()  {

@@ -7,7 +7,7 @@
 <template>
   <div class="container1" style="display:flex;flex-diection:row">
     <div style="width:400px;height:400px;border:1px solid red;position:relative">
-      <yx-water-mark content='12345 水印'/>
+      <yx-water-mark :content='content'/>
       <el-button @click="show">无蒙板 </el-button>
     </div>
     <div style="width:400px;height:400px;border:1px solid red;position:relative">
@@ -20,14 +20,14 @@
     export default{
         data(){
             return {
-  
+              content:""
             }
         },
         created(){
         },
         methods:{
           show(){
-            alert('sss')
+            this.content=new Date().getTime()+''
           }
         }
     }

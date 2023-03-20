@@ -39,7 +39,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.1.2',
+  version: '1.1.2-1',
   install,
   Svgedit,
   Svgitem,
