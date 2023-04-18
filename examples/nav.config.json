@@ -21,6 +21,10 @@
             {
               "path": "/test",
               "title": "正则表达式"
+            },
+            {
+              "path": "/utils",
+              "title": "方法汇总"
             }
           ]
         },

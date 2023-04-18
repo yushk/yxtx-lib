@@ -11,6 +11,7 @@ import Load from '../packages/load/index.js';
 import Clock from '../packages/clock/index.js';
 import Watermark from '../packages/watermark/index.js';
 import Test from './utils/test.js';
+import Utils from './utils/utils.js';
 
 
 const components = [
@@ -39,7 +40,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.1.2-1',
+  version: '1.1.4',
   install,
   Svgedit,
   Svgitem,
@@ -51,5 +52,6 @@ export default {
   Load,
   Clock,
   Watermark,
-Test
+Test,
+Utils
 };

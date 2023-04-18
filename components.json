@@ -12,6 +12,7 @@
     "watermark": "./packages/watermark/index.js"
   },
   "utils":{
-    "test": "./src/utils/test.js"
+    "test": "./src/utils/test.js",
+    "utils": "./src/utils/utils.js"
   }
 }
