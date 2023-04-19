@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta data-n-head="ssr" data-hid="description" name="description" content="图片在线压缩,图片压缩,图片格式批量转换,图片格式转换工具">
+    <meta data-n-head="ssr" data-hid="keywords" name="keywords" content="yushk,在线图片压缩,线图片压缩,在线png压缩,在线jpg压缩,在线webp压缩,在线gif压缩,快改图">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_137970_p1tpzmomxp9cnmi.css">
     <link rel='mask-icon' href="https://raw.githubusercontent.com/ElemeFE/element/dev/examples/assets/images/element-logo-small.svg" color="#409EFF">
